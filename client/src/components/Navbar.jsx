@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Logo from "../img/logo.webp";
 import { FiSearch } from "react-icons/fi";
-import { LuCalendarDays, LuLayoutList, LuUser2 } from "react-icons/lu";
+import { LuCalendarDays, LuLayoutList, LuUser } from "react-icons/lu";
 import { IoClose } from "react-icons/io5";
 import { BiCategory } from "react-icons/bi";
 import { BsCheck2All } from "react-icons/bs";
@@ -391,7 +391,7 @@ export const Navbar = () => {
             ) : (
               <button className="bg-zinc-100 p-[0.6rem] hover:bg-orange-200 transition-all ease-in-out duration-200 text-2xl rounded-md">
                 <Link to="/register">
-                  <LuUser2 />
+                  <LuUser />
                 </Link>
               </button>
             )}
