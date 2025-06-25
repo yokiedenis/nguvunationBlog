@@ -17,9 +17,10 @@ const corsOptions = {
   ],
   methods: "GET, POST, PUT, DELETE, PATCH, HEAD",
   credentials: true,
+  allowedHeaders: ['Content-Type', 'Authorization'],
 };
 app.use(cors(corsOptions));
-
+app.options('*', cors(corsOptions));
 const session = require("express-session");
 
 app.use(

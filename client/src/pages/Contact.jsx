@@ -76,14 +76,14 @@ const Contact = () => {
                   <span className="bg-custom-exlight-orange rounded-xl text-custom-black/80 p-3 text-2xl">
                     <HiOutlineMail />
                   </span>
-                  <span className="font-medium">infoofbunzon@gmial.com</span>
+                  <span className="font-medium">nguvunationexample@gmail.com</span>
                 </li>
                 <li className="flex items-center gap-3">
                   <span className="bg-custom-exlight-orange rounded-xl text-custom-black/80 p-3 text-2xl">
                     <GrLocation />
                   </span>
                   <span className="text-gray-600 text-sm font-medium">
-                    845 Central Ave Hamilton, Ohio(OH), 45011
+                   Location of Nguvu nation
                   </span>
                 </li>
               </ul>

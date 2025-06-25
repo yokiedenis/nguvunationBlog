@@ -179,13 +179,13 @@ export const Navbar = () => {
         <div className="py-6 md:py-10 px-4 md:px-20 flex items-center justify-between border-b border-gray-200">
           <div>
             <figure>
-              <img src={Logo} alt="Logo" className="w-20 md:w-auto" />
+              <img src={Logo} alt="Logo" className="w-25 md:w-40" />
             </figure>
           </div>
           <div className="flex items-center gap-3 md:gap-5">
             <button
               onClick={handleSearchClick}
-              className="bg-zinc-100 p-[0.6rem] hover:bg-orange-200 transition-all ease-in-out duration-200 text-2xl rounded-md"
+              className="border-[1px] border-cyan-500 p-[0.6rem] border-[1px] border-cyan-500 transition-all ease-in-out duration-200 text-2xl rounded-md"
             >
               <FiSearch className="w-5 h-5" />
             </button>
@@ -389,7 +389,7 @@ export const Navbar = () => {
                 </div>
               </>
             ) : (
-              <button className="bg-zinc-100 p-[0.6rem] hover:bg-orange-200 transition-all ease-in-out duration-200 text-2xl rounded-md">
+              <button className="p-[0.6rem] border-[1px] border-cyan-500 transition-all ease-in-out duration-200 text-2xl rounded-md">
                 <Link to="/register">
                   <LuUser />
                 </Link>
@@ -401,16 +401,16 @@ export const Navbar = () => {
         {/* Second Row: Social Media Icons and Navigation */}
         <div className="py-4 px-4 md:px-20 flex flex-col md:flex-row items-center justify-between ">
           <ul className="flex items-center gap-2 md:gap-3 text-sm order-2 md:order-1 max-md:mt-4">
-            <li className="bg-zinc-200 p-2 md:p-3 rounded-md cursor-pointer hover:bg-orange-200 transition-all ease-in-out duration-200">
+            <li className="bg-[#e7739a]  p-2 md:p-3 rounded-md cursor-pointer hover:bg-cyan-500 transition-all ease-in-out duration-200">
               <FaFacebookF />
             </li>
-            <li className="bg-zinc-200 p-2 md:p-3 rounded-md cursor-pointer hover:bg-orange-200 transition-all ease-in-out duration-200">
+            <li className="bg-[#e7739a] p-2 md:p-3 rounded-md cursor-pointer hover:bg-cyan-500 transition-all ease-in-out duration-200">
               <FaTwitter />
             </li>
-            <li className="bg-zinc-200 p-2 md:p-3 rounded-md cursor-pointer hover:bg-orange-200 transition-all ease-in-out duration-200">
+            <li className="bg-[#e7739a] p-2 md:p-3 rounded-md cursor-pointer hover:bg-cyan-500 transition-all ease-in-out duration-200">
               <FaInstagram />
             </li>
-            <li className="bg-zinc-200 p-2 md:p-3 rounded-md cursor-pointer hover:bg-orange-200 transition-all ease-in-out duration-200">
+            <li className="bg-[#e7739a] p-2 md:p-3 rounded-md cursor-pointer hover:bg-cyan-500 transition-all ease-in-out duration-200">
               <FaLinkedinIn />
             </li>
           </ul>
@@ -418,7 +418,7 @@ export const Navbar = () => {
             <ul className="flex gap-6 md:gap-9 items-center text-center">
               <li>
                 <Link
-                  className="text-sm md:text-lg font-medium text-neutral-600 hover:text-orange-300 transition-all ease-in-out duration-200"
+                  className="text-sm md:text-lg font-medium hover:text-[#e7739a] px-3 py-1 border-[1px] border-cyan-500 text-cyan-500 transition-all ease-in-out duration-200"
                   to="/"
                 >
                   Home
@@ -426,7 +426,7 @@ export const Navbar = () => {
               </li>
               <li>
                 <Link
-                  className="text-sm md:text-lg font-medium text-neutral-600 hover:text-orange-300 transition-all ease-in-out duration-200"
+                  className="text-sm md:text-lg font-medium hover:text-[#e7739a] px-3 py-1 border-[1px] border-cyan-500 text-cyan-500 transition-all ease-in-out duration-200"
                   to="/about-us"
                 >
                   About
@@ -434,7 +434,7 @@ export const Navbar = () => {
               </li>
               <li>
                 <Link
-                  className="text-sm md:text-lg font-medium text-neutral-600 hover:text-orange-300 transition-all ease-in-out duration-200"
+                  className="text-sm md:text-lg font-medium hover:text-[#e7739a] px-3 py-1 border-[1px] border-cyan-500 text-cyan-500 transition-all ease-in-out duration-200"
                   to="/category"
                 >
                   Category
@@ -442,7 +442,7 @@ export const Navbar = () => {
               </li>
               <li>
                 <Link
-                  className="text-sm md:text-lg font-medium text-neutral-600 hover:text-orange-300 transition-all ease-in-out duration-200"
+                  className="text-sm md:text-lg font-medium hover:text-[#e7739a]  px-3 py-1 border-[1px] border-cyan-500 text-cyan-500 transition-all ease-in-out duration-200"
                   to="/contact-us"
                 >
                   Contact

@@ -773,7 +773,7 @@ export const Home = () => {
               <button
                 disabled={loading}
                 type="submit"
-                className="bg-orange-400 px-5 text-white hover:bg-orange-500 transition-all ease-in-out duration-200 py-[14px] font-medium text-[17px] rounded-lg"
+                className="bg-[#e7739a] hover:bg-cyan-500 px-5 text-white  transition-all ease-in-out duration-200 py-[14px] font-medium text-[17px] rounded-lg"
               >
                 {loading ? "Subscribing" : "Subscribe Now"}
               </button>

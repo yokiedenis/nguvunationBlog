@@ -36,14 +36,14 @@ const Footer = () => {
   };
   return (
     <footer className="">
-      <div className="flex justify-evenly max-lg:flex-col max-lg:items-center max-lg:gap-12 bg-custom-black p-20">
+      <div className="flex justify-evenly max-lg:flex-col max-lg:items-center max-lg:gap-12 bg-black p-20">
         {/* top content  */}
         <div className="w-[25%] max-sm:w-11/12 flex flex-col max-lg:items-center max-lg:text-center gap-5">
           <figure>
-            <img src={LogoWhite} alt="Bunzo blog logo" />
+            <img src={LogoWhite} alt=" blog logo" />
           </figure>
           <p className="text-white">
-            Lorem Ipsum is simply dummy text of the industry orem Ipsum has been
+            this is where the vision or some interesting text can go
             the industry&apos;s since the when unknown.
           </p>
           <ul className="flex items-center gap-3 text-sm text-white">
@@ -88,7 +88,7 @@ const Footer = () => {
             <button
               disabled={loading}
               type="submit"
-              className="bg-orange-300 hover:bg-orange-400 hover:text-white transition-all ease-in-out duration-200 py-3 text-lg font-medium px-3 rounded-lg"
+              className="bg-[#e7739a] hover:bg-cyan-500 hover:text-white transition-all ease-in-out duration-200 py-3 text-lg font-medium px-3 rounded-lg"
             >
               {loading ? "Subscribing" : "Subscribe Now"}
             </button>
@@ -97,73 +97,65 @@ const Footer = () => {
         <div className="flex justify-evenly gap-10 max-[561px]:flex-col text-center">
           {/* links list */}
           <div>
-            <h4 className="text-xl font-medium text-white">Company</h4>
+            <h4 className="text-xl font-medium text-white">Nguvu Nation</h4>
             <ul className="text-white mt-5 text-base flex flex-col gap-2">
-              <li className="hover:text-orange-300 transition-all ease-in-out duration-200">
+              <li className="hover:text-cyan-500 transition-all ease-in-out duration-200">
                 <Link>About Us</Link>
               </li>
-              <li className="hover:text-orange-300 transition-all ease-in-out duration-200">
+              <li className="hover:text-cyan-500 transition-all ease-in-out duration-200">
                 <Link>Contact Us</Link>
               </li>
-              <li className="hover:text-orange-300 transition-all ease-in-out duration-200">
-                <Link>Local Print Ads</Link>
+              <li className="hover:text-cyan-500 transition-all ease-in-out duration-200">
+                <Link>Gallery</Link>
               </li>
-              <li className="hover:text-orange-300 transition-all ease-in-out duration-200">
+              <li className="hover:text-cyan-500 transition-all ease-in-out duration-200">
                 <Link>FAQ&apos;s</Link>
               </li>
-              <li className="hover:text-orange-300 transition-all ease-in-out duration-200">
-                <Link>Careers</Link>
-              </li>
+
             </ul>
           </div>
           <div>
             <h4 className="text-xl font-medium text-white">Quick Links</h4>
             <ul className="text-white mt-5 text-base flex flex-col gap-2">
-              <li className="hover:text-orange-300 transition-all ease-in-out duration-200">
-                <Link>Privacy Policy</Link>
+              <li className="hover:text-cyan-500 transition-all ease-in-out duration-200">
+              <Link>Shop</Link>
               </li>
-              <li className="hover:text-orange-300 transition-all ease-in-out duration-200">
-                <Link>Discussion</Link>
+              <li className="hover:text-cyan-500  transition-all ease-in-out duration-200">
+                <Link>Volunteer</Link>
               </li>
-              <li className="hover:text-orange-300 transition-all ease-in-out duration-200">
+              <li className="hover:text-cyan-500  transition-all ease-in-out duration-200">
                 <Link>Terms & conditions</Link>
               </li>
-              <li className="hover:text-orange-300 transition-all ease-in-out duration-200">
-                <Link>Customer Support</Link>
-              </li>
-              <li className="hover:text-orange-300 transition-all ease-in-out duration-200">
-                <Link>Course FAQ&apos;s</Link>
+              <li className="hover:text-cyan-500  transition-all ease-in-out duration-200">
+              <Link>Privacy Policy</Link>
               </li>
             </ul>
           </div>
           <div>
             <h4 className="text-xl font-medium text-white">Category</h4>
             <ul className="text-white mt-5 text-base  flex flex-col gap-2">
-              <li className="hover:text-orange-300 transition-all ease-in-out duration-200">
+              <li className="hover:text-cyan-500 transition-all ease-in-out duration-200">
                 <Link>Lifestyle</Link>
               </li>
-              <li className="hover:text-orange-300 transition-all ease-in-out duration-200">
+              <li className="hover:text-cyan-500  transition-all ease-in-out duration-200">
                 <Link>Healthy</Link>
               </li>
-              <li className="hover:text-orange-300 transition-all ease-in-out duration-200">
-                <Link>Restaurant</Link>
-              </li>
-              <li className="hover:text-orange-300 transition-all ease-in-out duration-200">
+              <li className="hover:text-cyan-500  transition-all ease-in-out duration-200">
                 <Link>Travel tips</Link>
               </li>
-              <li className="hover:text-orange-300 transition-all ease-in-out duration-200">
+              <li className="hover:text-cyan-500  transition-all ease-in-out duration-200">
                 <Link>Marketing</Link>
               </li>
             </ul>
           </div>
         </div>
       </div>
-      <div className="bg-custom-light-black text-white text-center py-5 flex justify-between max-sm:flex-col max-sm:items-center max-sm:gap-3 px-5">
+      <div className="bg-black text-white text-center py-5 flex justify-between max-sm:flex-col max-sm:items-center max-sm:gap-3 px-5">
         <p className="flex items-center flex-wrap justify-center text-[15px] font-medium">
-          © 2025 <Link className="mx-2 text-orange-400">Nguvu Nation</Link> . Made with{" "}
+          © 2025 <Link className="mx-2 text-cyan-500">Nguvu Nation</Link> . Made with{" "}
           <FaHeart className="mx-2 text-red-500" /> by yoki3
         </p>
-        <button className="bg-orange-300 hover:bg-orange-400 text-custom-black hover:text-white flex items-center gap-2 text-[15px] transition-all ease-in-out duration-200 py-3 font-medium px-3 rounded-lg w-fit">
+        <button className="bg-[#e7739a]  hover:bg-cyan-500 text-custom-black hover:text-white flex items-center gap-2 text-[15px] transition-all ease-in-out duration-200 py-3 font-medium px-3 rounded-lg w-fit">
           Share your thinking <BsArrowRight />
         </button>
       </div>

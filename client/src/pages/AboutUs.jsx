@@ -165,7 +165,7 @@ const AboutUs = () => {
           <div className="w-1/2 flex items-center justify-center text-center max-lg:w-full">
             <h2 className="text-5xl leading-[4rem]">
               You Can <span className="font-semibold">Read</span> And{" "}
-              <span className="font-semibold">Write</span> With Bunzo.
+              <span className="font-semibold">Write</span> With Nguvu Nation.
             </h2>
           </div>
           <div className="w-1/2 flex flex-col max-lg:w-full max-lg:flex-row max-md:flex-col">
@@ -181,7 +181,7 @@ const AboutUs = () => {
               </p>
             </div>
             <div className="flex flex-col gap-3 border-x max-lg:border border-gray-200 p-8">
-              <h4 className="text-2xl font-semibold">Bunzo History</h4>
+              <h4 className="text-2xl font-semibold">Nguvu Nation History</h4>
               <p>
                 Lorem Ipsum is simply dummy text of the printing and typesetting
                 industry. Lorem Ipsum has been the industry&apos;s standard

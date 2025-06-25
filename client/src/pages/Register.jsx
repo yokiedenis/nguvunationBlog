@@ -84,7 +84,7 @@ const Register = () => {
       <div className="bg-white p-8 rounded-xl border border-gray-200 max-w-lg w-full mx-4">
         <div className="flex flex-col gap-2 items-center">
           <h2 className="text-3xl font-semibold text-center text-custom-light-black">
-            Welcome to Bunzo
+            Welcome to Nguvu Nation
           </h2>
           <p className="text-center text-gray-500 font-medium">
             Register to create your first account and start exploring blog posts
