@@ -4,11 +4,11 @@ let io;
 const initializeSocket = (server) => {
   io = socketIO(server, {
     cors: {
-      origin: "http://localhost:5173", // Adjust if using a different frontend port
+      origin: FRONTEND_CLIENT_URL, // Adjust if using a different frontend port
       methods: ["GET", "POST"],
     },
   });
-http://localhost:5173
+
   io.on("connection", (socket) => {
     console.log("A user connected");
 
