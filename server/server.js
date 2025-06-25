@@ -13,7 +13,7 @@ app.use(express.json());
 
 const corsOptions = {
   origin: [
-    "http://localhost:5173",
+    process.env.FRONTEND_CLIENT_URL,
   ],
   methods: "GET, POST, PUT, DELETE, PATCH, HEAD",
   credentials: true,
