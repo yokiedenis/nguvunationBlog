@@ -4,7 +4,7 @@ let io;
 const initializeSocket = (server) => {
   io = socketIO(server, {
     cors: {
-      origin: FRONTEND_CLIENT_URL, // Adjust if using a different frontend port
+      origin: "https://nguvunationblog.onrender.com", // Adjust if using a different frontend port
       methods: ["GET", "POST"],
     },
   });
