@@ -84,8 +84,14 @@ const Register = () => {
       <div className="bg-white p-8 rounded-xl border border-gray-200 max-w-lg w-full mx-4">
         <div className="flex flex-col gap-2 items-center">
           <h2 className="text-3xl font-semibold text-center text-custom-light-black">
-            Welcome to Nguvu Nation
-          </h2>
+  Welcome to 
+  <span className="text-cyan-500"> N</span>
+  <span className="text-[#e7739a]">guvu</span>
+  {' '}
+  <span className="text-[#e7739a]">N</span>
+  <span className="text-cyan-500">ation</span>
+</h2>
+          
           <p className="text-center text-gray-500 font-medium">
             Register to create your first account and start exploring blog posts
           </p>
@@ -216,7 +222,7 @@ const Register = () => {
           <button
             type="submit"
             disabled={isSubmitting}
-            className="w-full bg-custom-light-black/90 text-white py-3 rounded-md text-lg font-medium hover:bg-custom-black transition-all ease-in-out duration-200"
+            className="w-full bg-[#e7739a] hover:bg-cyan-500 hover:text-white py-3 rounded-md text-lg font-medium hover:bg-custom-black transition-all ease-in-out duration-200"
           >
             {isSubmitting ? "Registering..." : "Register"}
           </button>
@@ -236,7 +242,7 @@ const Register = () => {
 
         <p className="text-center mt-5 font-medium ">
           Already Have an Account?{" "}
-          <Link to="/login" className="text-orange-400">
+          <Link to="/login" className="text-[#e7739a]">
             Login
           </Link>
         </p>

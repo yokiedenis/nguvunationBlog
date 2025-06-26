@@ -74,8 +74,14 @@ const Login = () => {
       <div className="bg-white p-8 rounded-xl border border-gray-200 max-w-lg w-full mx-4">
         <div className="flex flex-col gap-2 items-center">
           <h2 className="text-3xl font-semibold text-center text-custom-light-black">
-            Welcome to Nguvu Nation
-          </h2>
+  Welcome to 
+  <span className="text-cyan-500"> N</span>
+  <span className="text-[#e7739a]">guvu</span>
+  {' '}
+  <span className="text-[#e7739a]">N</span>
+  <span className="text-cyan-500">ation</span>
+</h2>
+         
           <p className="text-center text-gray-500 font-medium">
             Login to your account and start exploring blog posts
           </p>
@@ -153,7 +159,7 @@ const Login = () => {
           <button
             type="submit"
             disabled={isSubmitting}
-            className="w-full bg-custom-light-black/90 text-white py-3 rounded-md text-lg font-medium hover:bg-custom-black transition-all ease-in-out duration-200"
+            className="w-full bg-[#e7739a] hover:bg-cyan-500 hover:text-white py-3 rounded-md text-lg font-medium hover:bg-custom-black transition-all ease-in-out duration-200"
           >
             {isSubmitting ? "Submitting..." : "Login"}
           </button>
@@ -173,7 +179,7 @@ const Login = () => {
 
         <p className="text-center mt-5 font-medium ">
           Don&apos;t Have an Account?{" "}
-          <Link to="/register" className="text-orange-400">
+          <Link to="/register" className="text-[#e7739a]">
             Sign Up
           </Link>
         </p>

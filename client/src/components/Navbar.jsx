@@ -176,18 +176,25 @@ export const Navbar = () => {
     <>
       <header className="w-full border-b border-gray-200">
         {/* First Row: Logo and Icons */}
-        <div className="py-6 md:py-10 px-4 md:px-20 flex items-center justify-between border-b border-gray-200">
+        <div className="py-6 md:py-10 px-2 md:px-10 flex items-center bg-black justify-between border-b border-gray-200">
           <div>
             <figure>
               <img src={Logo} alt="Logo" className="w-25 md:w-40" />
             </figure>
           </div>
+          <h2 className="hidden lg:block text-3xl font-semibold text-center text-custom-light-black">
+  <span className="text-cyan-500"> N</span>
+  <span className="text-[#e7739a]">guvu</span>
+  {' '}
+  <span className="text-[#e7739a]">N</span>
+  <span className="text-cyan-500">ation</span>
+</h2>
           <div className="flex items-center gap-3 md:gap-5">
             <button
               onClick={handleSearchClick}
-              className="border-[1px] border-cyan-500 p-[0.6rem] border-[1px] border-cyan-500 transition-all ease-in-out duration-200 text-2xl rounded-md"
+              className="border-[1px] border-cyan-500 p-[0.6rem] border-[1px] hover:border-[#e7739a] border-cyan-500 transition-all ease-in-out duration-200 text-2xl rounded-md"
             >
-              <FiSearch className="w-5 h-5" />
+              <FiSearch className="w-5 h-5 text-cyan-500" />
             </button>
             {token && user ? (
               <>
@@ -389,10 +396,10 @@ export const Navbar = () => {
                 </div>
               </>
             ) : (
-              <button className="p-[0.6rem] border-[1px] border-cyan-500 transition-all ease-in-out duration-200 text-2xl rounded-md">
-                <Link to="/register">
-                  <LuUser />
-                </Link>
+              <button className=" border-[1px] border-cyan-500 p-[0.6rem] hover:border-[#e7739a]  transition-all ease-in-out duration-200 text-2xl rounded-md">
+               <Link to="/register">
+  <LuUser className="text-cyan-500" />
+</Link>
               </button>
             )}
           </div>
