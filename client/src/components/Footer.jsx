@@ -47,16 +47,16 @@ const Footer = () => {
             the industry&apos;s since the when unknown.
           </p>
           <ul className="flex items-center gap-3 text-sm text-white">
-            <li className="bg-custom-light-black p-3 rounded-md cursor-pointer hover:bg-orange-200 transition-all ease-in-out duration-200">
+            <li className="p-3 rounded-md cursor-pointer  bg-[#e7739a] text-black hover:bg-cyan-500 transition-all ease-in-out duration-200">
               <FaFacebookF />
             </li>
-            <li className="bg-custom-light-black p-3 rounded-md cursor-pointer hover:bg-orange-200 transition-all ease-in-out duration-200">
+            <li className="p-3 rounded-md cursor-pointer bg-[#e7739a] text-black hover:bg-cyan-500 transition-all ease-in-out duration-200">
               <FaTwitter />
             </li>
-            <li className="bg-custom-light-black p-3 rounded-md cursor-pointer hover:bg-orange-200 transition-all ease-in-out duration-200">
+            <li className="bg-[#e7739a] hover:bg-cyan-500 p-3 text-black rounded-md cursor-pointer transition-all ease-in-out duration-200">
               <FaInstagram />
             </li>
-            <li className="bg-custom-light-black p-3 rounded-md cursor-pointer hover:bg-orange-200 transition-all ease-in-out duration-200">
+            <li className=" p-3 rounded-md cursor-pointer bg-[#e7739a] text-black hover:bg-cyan-500 transition-all ease-in-out duration-200">
               <FaLinkedinIn />
             </li>
           </ul>

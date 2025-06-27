@@ -408,16 +408,16 @@ export const Navbar = () => {
         {/* Second Row: Social Media Icons and Navigation */}
         <div className="py-4 px-4 md:px-20 flex flex-col md:flex-row items-center justify-between ">
           <ul className="flex items-center gap-2 md:gap-3 text-sm order-2 md:order-1 max-md:mt-4">
-            <li className="bg-[#e7739a]  p-2 md:p-3 rounded-md cursor-pointer hover:bg-cyan-500 transition-all ease-in-out duration-200">
+            <li className="bg-[#e7739a]  p-2 md:p-3 rounded-md text-white cursor-pointer hover:bg-cyan-500 transition-all ease-in-out duration-200">
               <FaFacebookF />
             </li>
-            <li className="bg-[#e7739a] p-2 md:p-3 rounded-md cursor-pointer hover:bg-cyan-500 transition-all ease-in-out duration-200">
+            <li className="bg-[#e7739a] p-2 md:p-3 rounded-md text-white cursor-pointer hover:bg-cyan-500 transition-all ease-in-out duration-200">
               <FaTwitter />
             </li>
-            <li className="bg-[#e7739a] p-2 md:p-3 rounded-md cursor-pointer hover:bg-cyan-500 transition-all ease-in-out duration-200">
+            <li className="bg-[#e7739a] p-2 md:p-3 rounded-md text-white cursor-pointer hover:bg-cyan-500 transition-all ease-in-out duration-200">
               <FaInstagram />
             </li>
-            <li className="bg-[#e7739a] p-2 md:p-3 rounded-md cursor-pointer hover:bg-cyan-500 transition-all ease-in-out duration-200">
+            <li className="bg-[#e7739a] p-2 md:p-3 rounded-md text-white cursor-pointer hover:bg-cyan-500 transition-all ease-in-out duration-200">
               <FaLinkedinIn />
             </li>
           </ul>
