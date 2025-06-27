@@ -176,10 +176,10 @@ export const Navbar = () => {
     <>
       <header className="w-full border-b border-gray-200">
         {/* First Row: Logo and Icons */}
-        <div className="py-6 md:py-10 px-2 md:px-10 flex items-center bg-black justify-between border-b border-gray-200">
+        <div className="py-4 md:py-5 px-2 md:px-8 flex items-center bg-black justify-between border-b border-gray-200">
           <div>
             <figure>
-              <img src={Logo} alt="Logo" className="w-25 md:w-40" />
+            <img src={Logo} alt="Logo" className="w-[10rem] md:w-[12rem] " /> 
             </figure>
           </div>
           <h2 className="hidden lg:block text-3xl font-semibold text-center text-custom-light-black">

@@ -62,9 +62,9 @@ const AboutUs = () => {
     <>
       <section className="">
         <div className="flex justify-center items-center bg-custom-exlight-orange py-24">
-          <span className="bg-custom-light-orange rounded-md px-4 py-2 text-base font-medium">
+          <span className="bg-[#e7739a]   rounded-md px-4 py-2 text-base font-medium">
             <Link to="/">Home</Link> /{" "}
-            <Link to="/about-us" className="text-orange-400">
+            <Link to="/about-us" className="text-white">
               About Us
             </Link>
           </span>
@@ -113,18 +113,27 @@ const AboutUs = () => {
               <img src={feature1} alt="Feature image" />
             </figure>
             <h4 className="text-2xl font-semibold text-custom-black">
-              Open Platform
+            OUR OBJECTIVES
             </h4>
             <p className="text-sm leading-6">
-              Lorem Ipsum is simply dummy text of the printing and typesetting
-              industry has been the industry&apos;s standard dummy text ever
-              since the 1500s when an unknown printer took galley type and
-              scrambled.
+            1.To eliminate gender inequalities in primary and secondary education by achieving equality in
+education, with ensuring girl ’ s full and equal access to basic education, and free access to
+menstration products
             </p>
             <p className="text-sm leading-6">
-              Lorem Ipsum is simply dummy text of the printing and typesetting
-              industry has been the industry&apos;s standard.
+            2. Empower young girls be financially independent through capacity building
             </p>
+            <p className="text-sm leading-6">
+            3. To strive for a gender violent free community safe for young girls.
+            </p>
+            <p className="text-sm leading-6">
+            4. To raise awareness, understanding and knowledge about sanitation and malaria prevention
+            </p>
+            <p className="text-sm leading-6">
+            5. To make campaigns like go green through planting trees, using environmentally friendly products
+            and install cost effective home energy.
+            </p>
+
           </div>
           <div className="bg-custom-exlight-orange p-10 w-[63%] max-lg:w-full flex gap-3 rounded-xl max-xl:flex-col">
             <div className="w-1/2 flex flex-col gap-2 max-xl:w-full">
@@ -132,17 +141,21 @@ const AboutUs = () => {
                 <img src={feature2} alt="Feature image" />
               </figure>
               <h4 className="text-2xl font-semibold text-custom-black">
-                Digital Publishing
+                OUR VALUES
               </h4>
               <p className="text-sm leading-6">
-                Lorem Ipsum is simply dummy text of the printing and typesetting
-                industry has been the industry&apos;s standard dummy text ever
-                since the 1500s when an unknown printer took galley type and
-                scrambled.
+              1. Believe in the power of committed youth individuals and organizations that
+              contribute to a sustainable development.
               </p>
               <p className="text-sm leading-6">
-                Lorem Ipsum is simply dummy text of the printing and typesetting
-                industry has been the industry&apos;s standard.
+              2. Working with efficiency, efficacy and long term sustainability
+              </p>
+              <p className="text-sm leading-6">
+              3. We believe in committed, selfless, godly and service oriented individuals who want to make a
+              positive impact to their communities.
+              </p>
+              <p className="text-sm leading-6">
+              4. We value the principle of social justice, and empowerment of youth, and women.
               </p>
             </div>
             <div className="w-1/2 max-xl:w-full">
@@ -163,32 +176,37 @@ const AboutUs = () => {
       <section className="px-24 mt-[5rem] max-sm:px-5">
         <div className="flex gap-5 border-y border-gray-200 max-lg:flex-col py-10">
           <div className="w-1/2 flex items-center justify-center text-center max-lg:w-full">
-            <h2 className="text-5xl leading-[4rem]">
-              You Can <span className="font-semibold">Read</span> And{" "}
-              <span className="font-semibold">Write</span> With Nguvu Nation.
-            </h2>
+            <h3 className="text-5xl leading-[4rem]">
+              You Can Volunteer And tagline 
+              <span className="font-semibold text-cyan-500"> N</span><span className="font-semibold text-[#e7739a]">guvu N</span><span className="font-semibold text-cyan-500">ation.</span>
+            </h3>
           </div>
           <div className="w-1/2 flex flex-col max-lg:w-full max-lg:flex-row max-md:flex-col">
             <div className="flex flex-col gap-3 border-x max-lg:border border-gray-200 p-8 border-b">
-              <h4 className="text-2xl font-semibold">Mission & Vission</h4>
+              <h4 className="text-2xl font-semibold">Our Vision</h4>
               <p>
-                Lorem Ipsum is simply dummy text of the printing and typesetting
-                industry. Lorem Ipsum has been the industry&apos;s standard
-                dummy text eve since the 1500 when an unknown printer took a
-                galley type scrambled&apos;s make a type specimen book. It has
-                survived not only five centuries also the leap into electronic
-                typesetting.
+              Nguvu Nation is set out to uplift, support , empower and rewrite the narratives of young girls with
+purpose through community based advocacy programs, training like sanitation awareness, home
+energy installations, health care programs, women economic empowerment, eradication of gender
+based violence, vocational and agricultural training
               </p>
+              <h4 className="text-2xl font-semibold">Our Mission</h4>
+              <p>our goal is to have an impact on the lives of young girls by providing positive and godly impact
+              oriented, cost effective and culturally competent capacity building programs.</p>
             </div>
             <div className="flex flex-col gap-3 border-x max-lg:border border-gray-200 p-8">
               <h4 className="text-2xl font-semibold">Nguvu Nation History</h4>
               <p>
-                Lorem Ipsum is simply dummy text of the printing and typesetting
-                industry. Lorem Ipsum has been the industry&apos;s standard
-                dummy text eve since the 1500 when an unknown printer took a
-                galley type scrambled&apos;s make a type specimen book. It has
-                survived not only five centuries also the leap into electronic
-                typesetting.
+              NGUVU is a Swahili word that means *strong*
+Nguvu Nation is an organization directed towards uplifting, supporting and empowering young
+girls between the ages of 9 24 through equipping them with a variety of life skills, training,
+mentoring as well as educating and sensitizing them for sustainable living and development.
+It was founded in 2023 by a group of energetic youth activists, who came together with the
+objective of improving and upgrading lives of young girls in Ugandan communities.
+They also realized the necessity of this establishment as a means of contributing to development
+and meeting communities’ needs which has been the driving force and motivation.
+We aim at achieving sustainable results from developmental activities and initiatives to our
+communities, especially with the youth, young girls and single mothers.
               </p>
             </div>
           </div>
@@ -296,13 +314,13 @@ const AboutUs = () => {
             <div className="mt-[2rem] flex justify-center gap-3">
               <button
                 onClick={previous}
-                className="bg-custom-orange outline-none text-white p-4 text-base rounded-full"
+                className="bg-cyan-500 outline-none text-white p-4 text-base rounded-full"
               >
                 <FaArrowLeft />
               </button>
               <button
                 onClick={next}
-                className="bg-custom-orange outline-none text-white p-4 text-base rounded-full"
+                className="bg-cyan-500 outline-none text-white p-4 text-base rounded-full"
               >
                 <FaArrowRight />
               </button>

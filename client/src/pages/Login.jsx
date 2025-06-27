@@ -69,7 +69,7 @@ const Login = () => {
   };
 
   return (
-    <div className="min-h-screen flex flex-col justify-center items-center my-8">
+    <div className="min-h-[80vh] flex flex-col justify-center items-center my-4">
       {/* Card Container */}
       <div className="bg-white p-8 rounded-xl border border-gray-200 max-w-lg w-full mx-4">
         <div className="flex flex-col gap-2 items-center">
@@ -83,7 +83,7 @@ const Login = () => {
 </h2>
          
           <p className="text-center text-gray-500 font-medium">
-            Login to your account and start exploring blog posts
+            Login to your account
           </p>
         </div>
 

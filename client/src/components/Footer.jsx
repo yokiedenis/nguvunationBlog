@@ -43,8 +43,8 @@ const Footer = () => {
             <img src={LogoWhite} alt=" blog logo" />
           </figure>
           <p className="text-white">
-            this is where the vision or some interesting text can go
-            the industry&apos;s since the when unknown.
+ Our goal is to have an impact on the lives of young girls by providing positive and godly impact
+ oriented, cost effective and culturally competent capacity building programs.
           </p>
           <ul className="flex items-center gap-3 text-sm text-white">
             <li className="p-3 rounded-md cursor-pointer  bg-[#e7739a] text-black hover:bg-cyan-500 transition-all ease-in-out duration-200">
