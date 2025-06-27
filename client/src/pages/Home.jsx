@@ -795,7 +795,7 @@ export const Home = () => {
       </section>
       <section className="px-20 py-20 max-[480px]:px-5">
         <h4 className="text-3xl font-semibold text-neutral-800">
-          Programs
+          Featured Blogs
         </h4>
         <div className="flex gap-8 mt-7 max-lg:flex-col">
           <div className="w-[70%] max-lg:w-full flex gap-3 max-md:flex-col max-md:w-full">
