@@ -339,6 +339,62 @@ export const Home = () => {
   }
   return (
     <>
+    <section className="flex flex-col lg:flex-row gap-6 px-5 md:px-10 lg:px-20 py-10 bg-[#FAFAFA]">
+        {/* Heading and Navigation Buttons */}
+        <div className="w-full lg:w-1/4">
+          <h4 className="text-3xl font-semibold text-neutral-800">
+            Trending Topic
+          </h4>
+          <div className="flex items-center gap-3 mt-5">
+            <button
+              className="bg-cyan-500 hover:bg-[#e7739a] transition-all ease-in-out duration-200 text-white p-2 rounded-md"
+              onClick={previous}
+            >
+              <CgArrowLongLeft className="w-5 h-5" />
+            </button>
+            <button
+              className="bg-cyan-500 hover:bg-[#e7739a] transition-all ease-in-out duration-200 text-white p-2 rounded-md"
+              onClick={next}
+            >
+              <CgArrowLongRight className="w-5 h-5" />
+            </button>
+          </div>
+        </div>
+
+        {/* Carousel Grid */}
+        <div className="overflow-hidden w-full lg:w-[75%]">
+          <Slider
+            ref={(slider) => {
+              sliderRef = slider;
+            }}
+            {...settings}
+          >
+            {categories.map((item, index) => (
+              <div key={index} className="relative flex-shrink-0 px-2">
+                <Link
+                  to={`/category/${item._id}`}
+                  state={{ categoryName: item.name }}
+                >
+                  <figure className="relative">
+                    <img
+                      src={item.imageUrl}
+                      alt=""
+                      className="h-36 w-full rounded-xl object-cover"
+                    />
+                    {/* Gradient overlay */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-[rgba(0,0,0,0.8)] via-transparent to-transparent rounded-xl"></div>
+                    {/* Text overlay */}
+                    <figcaption className="absolute bottom-[10%] left-0 right-0 text-white text-center p-2 font-semibold text-lg">
+                      {item.name}
+                    </figcaption>
+                  </figure>
+                </Link>
+              </div>
+            ))}
+          </Slider>
+        </div>
+      </section>
+
       <section className="p-6 md:p-16 bg-zinc-100 flex max-lg:flex-col gap-8 md:gap-12 w-full">
         {blogs.length > 0 ? (
           <>
@@ -698,62 +754,7 @@ export const Home = () => {
         </section>
       )}
 
-      <section className="flex flex-col lg:flex-row gap-6 px-5 md:px-10 lg:px-20 py-10 bg-[#FAFAFA]">
-        {/* Heading and Navigation Buttons */}
-        <div className="w-full lg:w-1/4">
-          <h4 className="text-3xl font-semibold text-neutral-800">
-            Trending Topic
-          </h4>
-          <div className="flex items-center gap-3 mt-5">
-            <button
-              className="bg-neutral-800 hover:bg-orange-300 transition-all ease-in-out duration-200 text-white p-2 rounded-md"
-              onClick={previous}
-            >
-              <CgArrowLongLeft className="w-5 h-5" />
-            </button>
-            <button
-              className="bg-neutral-800 hover:bg-orange-300 transition-all ease-in-out duration-200 text-white p-2 rounded-md"
-              onClick={next}
-            >
-              <CgArrowLongRight className="w-5 h-5" />
-            </button>
-          </div>
-        </div>
-
-        {/* Carousel Grid */}
-        <div className="overflow-hidden w-full lg:w-[75%]">
-          <Slider
-            ref={(slider) => {
-              sliderRef = slider;
-            }}
-            {...settings}
-          >
-            {categories.map((item, index) => (
-              <div key={index} className="relative flex-shrink-0 px-2">
-                <Link
-                  to={`/category/${item._id}`}
-                  state={{ categoryName: item.name }}
-                >
-                  <figure className="relative">
-                    <img
-                      src={item.imageUrl}
-                      alt=""
-                      className="h-36 w-full rounded-xl object-cover"
-                    />
-                    {/* Gradient overlay */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-[rgba(0,0,0,0.8)] via-transparent to-transparent rounded-xl"></div>
-                    {/* Text overlay */}
-                    <figcaption className="absolute bottom-[10%] left-0 right-0 text-white text-center p-2 font-semibold text-lg">
-                      {item.name}
-                    </figcaption>
-                  </figure>
-                </Link>
-              </div>
-            ))}
-          </Slider>
-        </div>
-      </section>
-
+      
       <section className="px-20 py-20 bg-[#FAFAFA] max-md:px-5">
         <div className="flex max-lg:flex-col items-center gap-5 relative bg-white rounded-xl h-56 px-20 py-4 max-md:px-5">
           <h4 className="text-2xl font-semibold text-neutral-700 max-lg:w-full max-lg:text-center">
