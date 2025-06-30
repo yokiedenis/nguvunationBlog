@@ -86,7 +86,17 @@ const Login = () => {
             Login to your account
           </p>
         </div>
+        {/* Divider */}
+        <div className="flex items-center justify-center my-5">
+          <span className="bg-gray-200 h-px flex-1"></span>
+          <span className="px-4 text-neutral-900 font-medium">
+            or Login with
+          </span>
+          <span className="bg-gray-200 h-px flex-1"></span>
+        </div>
 
+        {/* Social Sign Up Buttons */}
+        <SignAuth />
         {/* Form */}
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-5 mt-4">
           {/* Email Input */}
@@ -165,17 +175,7 @@ const Login = () => {
           </button>
         </form>
 
-        {/* Divider */}
-        <div className="flex items-center justify-center my-5">
-          <span className="bg-gray-200 h-px flex-1"></span>
-          <span className="px-4 text-neutral-900 font-medium">
-            or Login with
-          </span>
-          <span className="bg-gray-200 h-px flex-1"></span>
-        </div>
 
-        {/* Social Sign Up Buttons */}
-        <SignAuth />
 
         <p className="text-center mt-5 font-medium ">
           Don&apos;t Have an Account?{" "}

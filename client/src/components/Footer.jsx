@@ -100,13 +100,10 @@ const Footer = () => {
             <h4 className="text-xl font-medium text-white">Nguvu Nation</h4>
             <ul className="text-white mt-5 text-base flex flex-col gap-2">
               <li className="hover:text-cyan-500 transition-all ease-in-out duration-200">
-                <Link>About Us</Link>
+              <Link to="/contact-us">Contact Us</Link>
               </li>
               <li className="hover:text-cyan-500 transition-all ease-in-out duration-200">
-                <Link>Contact Us</Link>
-              </li>
-              <li className="hover:text-cyan-500 transition-all ease-in-out duration-200">
-                <Link>Gallery</Link>
+                <Link to="/gallery">Gallery</Link>
               </li>
               <li className="hover:text-cyan-500 transition-all ease-in-out duration-200">
                 <Link>FAQ&apos;s</Link>

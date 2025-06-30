@@ -7,6 +7,7 @@ import "slick-carousel/slick/slick-theme.css";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { Home } from "./pages/Home.jsx";
 import AboutUs from "./pages/AboutUs.jsx";
+import Gallery from "./pages/Gallery.jsx";
 import Contact from "./pages/Contact.jsx";
 import Category from "./pages/Category.jsx";
 import CategoryPosts from "./pages/CategoryPosts.jsx";
@@ -115,6 +116,10 @@ const router = createBrowserRouter([
   {
     path: "/user/profile/:userId",
     element: <App element={<Profile />} />,
+  },
+  {
+    path: "/gallery",
+    element: <App element={<Gallery />} />,
   },
 ]);
 

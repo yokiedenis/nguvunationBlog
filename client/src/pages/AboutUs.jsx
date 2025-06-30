@@ -1,10 +1,10 @@
 import React, { useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import blog1 from "../img/blog1.webp";
-import feature1 from "../img/feature-1.webp";
+import feature1 from "../img/elephant.png";
 import testimonial1 from "../img/testimonial-1.webp";
-import feature2 from "../img/feature-2.webp";
-import aboutShare from "../img/about-share.webp";
+import feature2 from "../img/customer.png";
+import aboutShare from "../img/tester1.jpeg";
 import team2 from "../img/team-2.webp";
 import {
   FaArrowLeft,
@@ -70,7 +70,7 @@ const AboutUs = () => {
           </span>
         </div>
       </section>
-      <section>
+      {/* <section>
         <div className="w-full relative px-24 mt-16 max-sm:px-5">
           <figure className="h-[500px] max-sm:h-[250px]">
             <img
@@ -78,15 +78,15 @@ const AboutUs = () => {
               alt=""
               className="rounded-xl h-full w-full object-cover"
             />
-          </figure>
-          <button
+          </figure> */}
+          {/* <button
             onClick={openModal}
             className="absolute top-[45%] max-sm:top-[35%] max-sm:left-[40%] hover:bg-orange-400 transition-all ease-in-out duration-200 left-[48%] text-white bg-orange-300 p-5 rounded-full text-2xl border-2 border-white"
           >
             <FaPlay />
-          </button>
-        </div>
-        {isModalOpen && (
+          </button> */}
+        {/* </div> */}
+        {/* {isModalOpen && (
           <div className="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50">
             <div className="relative w-[70%] mx-auto">
               <button
@@ -104,13 +104,14 @@ const AboutUs = () => {
               />
             </div>
           </div>
-        )}
-      </section>
+        )} */}
+      {/* </section> */}
       <section>
         <div className="mt-[5rem] px-24 flex gap-5 max-lg:flex-col max-sm:px-5">
           <div className="bg-custom-exlight-orange p-10 w-[35%] flex flex-col max-lg:w-full gap-2 rounded-xl">
-            <figure className="bg-custom-orange w-fit p-3 rounded-md">
+            <figure className="w-fit p-3 rounded-md">
               <img src={feature1} alt="Feature image" />
+              {/* <a href="https://www.flaticon.com/free-icons/elephant" title="elephant icons">Elephant icons created by Freepik - Flaticon</a> */}
             </figure>
             <h4 className="text-2xl font-semibold text-custom-black">
             OUR OBJECTIVES
@@ -137,7 +138,7 @@ menstration products
           </div>
           <div className="bg-custom-exlight-orange p-10 w-[63%] max-lg:w-full flex gap-3 rounded-xl max-xl:flex-col">
             <div className="w-1/2 flex flex-col gap-2 max-xl:w-full">
-              <figure className="bg-custom-orange w-fit p-3 rounded-md">
+              <figure className="w-fit p-3 rounded-md">
                 <img src={feature2} alt="Feature image" />
               </figure>
               <h4 className="text-2xl font-semibold text-custom-black">
@@ -165,9 +166,6 @@ menstration products
                   alt="about share"
                   className="max-xl:w-full max-xl:h-full max-lg:h-[300px] object-cover max-lg:rounded-xl"
                 />
-                <button className="bg-orange-300 hover:bg-orange-400 text-custom-black hover:text-white flex items-center gap-2 text-[15px] transition-all ease-in-out duration-200 py-3 font-medium px-3 rounded-lg absolute bottom-[8%] left-[18%]">
-                  Share your thinking <BsArrowRight />
-                </button>
               </figure>
             </div>
           </div>

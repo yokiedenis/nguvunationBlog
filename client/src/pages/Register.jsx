@@ -84,14 +84,13 @@ const Register = () => {
       <div className="bg-white p-8 rounded-xl border border-gray-200 max-w-lg w-full mx-4">
         <div className="flex flex-col gap-2 items-center">
           <h2 className="text-3xl font-semibold text-center text-custom-light-black">
-  Welcome to 
-  <span className="text-cyan-500"> N</span>
-  <span className="text-[#e7739a]">guvu</span>
-  {' '}
-  <span className="text-[#e7739a]">N</span>
-  <span className="text-cyan-500">ation</span>
-</h2>
-          
+            Welcome to
+            <span className="text-cyan-500"> N</span>
+            <span className="text-[#e7739a]">guvu</span>{" "}
+            <span className="text-[#e7739a]">N</span>
+            <span className="text-cyan-500">ation</span>
+          </h2>
+
           <p className="text-center text-gray-500 font-medium">
             Register to create your first account and start exploring blog posts
           </p>
@@ -101,7 +100,17 @@ const Register = () => {
             <p>{apiError}</p>
           </div>
         )}
+   {/* Divider */}
+   <div className="flex items-center justify-center my-5">
+          <span className="bg-gray-200 h-px flex-1"></span>
+          <span className="px-4 text-neutral-900 font-medium">
+            or Register with
+          </span>
+          <span className="bg-gray-200 h-px flex-1"></span>
+        </div>
 
+        {/* Social Sign Up Buttons */}
+        <SignAuth />
         {/* Form */}
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-5 mt-4">
           {/* Name Input */}
@@ -228,17 +237,7 @@ const Register = () => {
           </button>
         </form>
 
-        {/* Divider */}
-        <div className="flex items-center justify-center my-5">
-          <span className="bg-gray-200 h-px flex-1"></span>
-          <span className="px-4 text-neutral-900 font-medium">
-            or Register with
-          </span>
-          <span className="bg-gray-200 h-px flex-1"></span>
-        </div>
-
-        {/* Social Sign Up Buttons */}
-        <SignAuth />
+     
 
         <p className="text-center mt-5 font-medium ">
           Already Have an Account?{" "}

@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import Logo from "../img/logo.webp";
+import avaicon from "../img/gif.gif";
 import { FiSearch } from "react-icons/fi";
 import { LuCalendarDays, LuLayoutList, LuUser } from "react-icons/lu";
 import { IoClose } from "react-icons/io5";
@@ -396,9 +397,13 @@ export const Navbar = () => {
                 </div>
               </>
             ) : (
-              <button className=" border-[1px] border-cyan-500 p-[0.6rem] hover:border-[#e7739a]  transition-all ease-in-out duration-200 text-2xl rounded-md">
+              <button className=" border-[1px] border-cyan-500 p-[0.3rem] hover:border-[#e7739a]  transition-all ease-in-out duration-200 text-2xl rounded-md">
                <Link to="/register">
-  <LuUser className="text-cyan-500" />
+               <img 
+      src={avaicon}  // Update this path
+      alt="User icon"
+      className="w-8 h-8"  // Adjust size as needed
+    />
 </Link>
               </button>
             )}
@@ -450,9 +455,9 @@ export const Navbar = () => {
               <li>
                 <Link
                   className="text-sm md:text-lg font-medium hover:text-[#e7739a]  px-3 py-1 border-[1px] border-cyan-500 text-cyan-500 transition-all ease-in-out duration-200"
-                  to="/contact-us"
+                  to="/gallery"
                 >
-                  Contact
+                  Gallery
                 </Link>
               </li>
             </ul>
