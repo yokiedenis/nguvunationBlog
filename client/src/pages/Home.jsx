@@ -347,13 +347,13 @@ export const Home = () => {
           </h4>
           <div className="flex items-center gap-3 mt-5">
             <button
-              className="bg-cyan-500 hover:bg-[#e7739a] transition-all ease-in-out duration-200 text-white p-2 rounded-md"
+              className="bg-[#e7739a] hover:bg-cyan-500 transition-all ease-in-out duration-200 text-white p-2 rounded-md"
               onClick={previous}
             >
               <CgArrowLongLeft className="w-5 h-5" />
             </button>
             <button
-              className="bg-cyan-500 hover:bg-[#e7739a] transition-all ease-in-out duration-200 text-white p-2 rounded-md"
+              className="bg-[#e7739a] hover:bg-cyan-500 transition-all ease-in-out duration-200 text-white p-2 rounded-md"
               onClick={next}
             >
               <CgArrowLongRight className="w-5 h-5" />
