@@ -1,10 +1,14 @@
 const socketIO = require("socket.io");
 let io;
+const allowedOrigins =
+  process.env.NODE_ENV === "production"
+    ? ["https://nguvunationblog.onrender.com"]
+    : ["http://localhost:5173"];
 
 const initializeSocket = (server) => {
   io = socketIO(server, {
     cors: {
-      origin: "https://nguvunationblog.onrender.com", // Adjust if using a different frontend port
+      origin: allowedOrigins,// Adjust if using a different frontend port
       methods: ["GET", "POST"],
     },
   });

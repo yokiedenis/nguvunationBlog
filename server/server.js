@@ -8,6 +8,7 @@ const cors = require("cors");
 const cron = require("node-cron");
 const app = express();
 const server = http.createServer(app);
+const events = require('./routes/events');
 
 app.use(express.json());
 
@@ -54,7 +55,7 @@ app.use("/blog", blogRouter);
 app.use("/blog", categoryRouter);
 app.use("/blog", commentRouter);
 app.use("/password", passwordRecoveryRouter);
-
+app.use('/events', events);
 // Initialize Socket.IO
 initializeSocket(server);
 

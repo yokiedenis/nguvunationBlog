@@ -31,6 +31,8 @@ import Setting from "./pages/admin/pages/Setting.jsx";
 import ForgotPassword from "./pages/ForgotPassword.jsx";
 import ResetPassword from "./pages/ResetPassword.jsx";
 import Notification from "./pages/admin/components/Notification.jsx";
+import EventList from "./pages/eventList.jsx"; // New import
+import EventGallery from "./pages/EventGallery.jsx"; 
 
 const router = createBrowserRouter([
   {
@@ -121,6 +123,14 @@ const router = createBrowserRouter([
     path: "/gallery",
     element: <App element={<Gallery />} />,
   },
+  {
+    path: "/events",
+    element: <App element={<EventList />} />,
+  },
+  {
+    path: "/events/:eventId",
+    element: <App element={<EventGallery />} />,
+  }
 ]);
 
 ReactDOM.createRoot(document.getElementById("root")).render(
