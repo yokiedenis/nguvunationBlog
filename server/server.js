@@ -8,7 +8,7 @@ const cors = require("cors");
 const cron = require("node-cron");
 const app = express();
 const server = http.createServer(app);
-const events = require('./routes/events');
+
 
 app.use(express.json());
 
@@ -37,6 +37,7 @@ const PORT = process.env.PORT || 5000;
 
 // importing routes
 const authenticationRouter = require("./routers/authentication.router.js");
+const events = require('./routers/events');
 const blogRouter = require("./routers/blog.router.js");
 const categoryRouter = require("./routers/category.router.js");
 const contactRouter = require("./routers/contact.router.js");
