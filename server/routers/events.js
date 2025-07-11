@@ -2,10 +2,10 @@
 const express = require('express');
 const router = express.Router();
 const Event = require('../models/EventSchema');
-const authenticate = require('../middleware/auth');
+const { authenticateToken } = require('../middlewares/authenticateToken.middleware');
 
 // Create a new event
-router.post('/', authenticate, async (req, res) => {
+router.post('/', authenticateToken, async (req, res) => {
   try {
     const { title, description, startDate, endDate, location } = req.body;
     
@@ -60,7 +60,7 @@ router.get('/:eventId', async (req, res) => {
 });
 
 // Join an event
-router.post('/:eventId/join', authenticate, async (req, res) => {
+router.post('/:eventId/join', authenticateToken, async (req, res) => {
   try {
     const event = await Event.findById(req.params.eventId);
     

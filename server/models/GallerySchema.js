@@ -1,35 +1,41 @@
-// models/GallerySchema.js
 const mongoose = require('mongoose');
 
 const videoSchema = new mongoose.Schema({
-  title: { type: String, required: true },
-  description: String,
-  url: { type: String, required: true },
-  thumbnail: String,
-  size: { type: Number, required: true }, // in bytes
-  duration: Number, // in seconds
-  views: { type: Number, default: 0 },
-  eventId: { type: mongoose.Schema.Types.ObjectId, ref: 'Event' }, // Reference to event
-  createdAt: { type: Date, default: Date.now }
+  title: {
+    type: String,
+    required: true,
+  },
+  size: {
+    type: Number,
+    required: true,
+  },
+  videoLink: {
+    type: String, 
+    required: true,
+  },
+  publicId: {
+    type: String, 
+    required: true,
+  },
 });
 
 const gallerySchema = new mongoose.Schema({
-  userId: { 
-    type: mongoose.Schema.Types.ObjectId, 
-    ref: 'User', 
+  userId: {
+    type: String,
     required: true,
-    unique: true
+    unique: true,
   },
-  freeStorage: { 
-    type: Number, 
-    default: 50 * 1024 * 1024 // 50MB in bytes
+  freeStorage: {
+    type: Number,
+    required: true,
   },
-  freeBandwidth: { 
-    type: Number, 
-    default: 100 * 1024 * 1024 // 100MB in bytes
+  freeBandwidth: {
+    type: Number,
+    required: true,
   },
   videos: [videoSchema],
-  createdAt: { type: Date, default: Date.now }
 });
 
-module.exports = mongoose.model('Gallery', gallerySchema);
+const Gallery = mongoose.model('Gallery', gallerySchema);
+
+module.exports = { Gallery };
