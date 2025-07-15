@@ -129,7 +129,7 @@ const Footer = () => {
           Website powered with{" "}
           <FaHeart className="mx-2 text-red-500" /> by Yokas, Milan, Custer'ed, Rukundo this
         </p>
-        <p>© 2025 <Link className="mx-2 text-cyan-500">Nguvu Nation <br/> </Link></p>
+        <p>© 2025 <Link className="mx-2 text-cyan-500">Nguvu Nation Foundation</Link></p>
         <button className="bg-[#e7739a]  hover:bg-cyan-500 text-custom-black hover:text-white flex items-center gap-2 text-[15px] transition-all ease-in-out duration-200 py-3 font-medium px-3 rounded-lg w-fit">
           Share your thinking <BsArrowRight />
         </button>
