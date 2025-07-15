@@ -75,10 +75,10 @@ const Footer = () => {
             <ul className="text-white mt-5 text-base flex flex-col gap-2">
             <li className="text-sm md:text-lg font-medium hover:text-[#e7739a] px-3 py-1 border-[1px] border-cyan-500 text-cyan-500 transition-all ease-in-out duration-200">
              
-              <Link to="/gallery">Art Gallery</Link>
+              <Link to="./gallery">Arts and Crafts</Link>
               </li>
               <li className="text-sm md:text-lg font-medium hover:text-[#e7739a] px-3 py-1 border-[1px] border-cyan-500 text-cyan-500 transition-all ease-in-out duration-200">
-              <Link to="/contact-us">Contact Us</Link>
+              <Link to="./contact-us">Contact Us</Link>
               </li>
               <li className="text-sm md:text-lg font-medium hover:text-[#e7739a] px-3 py-1 border-[1px] border-cyan-500 text-cyan-500 transition-all ease-in-out duration-200">
                 <Link>FAQ&apos;s</Link>
@@ -118,7 +118,7 @@ const Footer = () => {
                 <Link>Travel tips</Link>
               </li>
               <li className="text-sm md:text-lg font-medium hover:text-[#e7739a] px-9 py-1 border-[1px] border-cyan-500 text-cyan-500 transition-all ease-in-out duration-200">
-                <Link>Shop</Link>
+                <Link>Gallery</Link>
               </li>
             </ul>
           </div>
