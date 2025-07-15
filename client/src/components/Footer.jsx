@@ -126,7 +126,7 @@ const Footer = () => {
       <div className="bg-black text-white text-center py-5 flex justify-between max-sm:flex-col max-sm:items-center max-sm:gap-3 px-5">
         <p className="flex items-center flex-wrap justify-center text-[15px] font-medium">
           © 2025 <Link className="mx-2 text-cyan-500">Nguvu Nation</Link> . Made with{" "}
-          <FaHeart className="mx-2 text-red-500" /> by yoki3, louis, custer, runkundo this
+          <FaHeart className="mx-2 text-red-500" /> by yoki3, Milan, custer, runkundo this
         </p>
         <button className="bg-[#e7739a]  hover:bg-cyan-500 text-custom-black hover:text-white flex items-center gap-2 text-[15px] transition-all ease-in-out duration-200 py-3 font-medium px-3 rounded-lg w-fit">
           Share your thinking <BsArrowRight />
