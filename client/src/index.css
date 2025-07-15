@@ -47,4 +47,11 @@ body{
       );
     }
   }
-  
+  @media screen and (max-width: 640px) {
+    .bloggie{
+        display: none;
+        position: absolute;
+        left: 500px;
+        bottom: 200px;
+    }
+  }
