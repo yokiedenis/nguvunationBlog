@@ -107,16 +107,16 @@ const Footer = () => {
           <div>
             {/* <h4 className="text-xl font-medium text-white">Category</h4> */}
             <ul className="text-white mt-5 text-base  flex flex-col gap-2">
-            <li className="text-sm md:text-lg font-medium hover:text-[#e7739a] px-9 py-2 border-[1px] border-cyan-500 text-cyan-500 transition-all ease-in-out duration-200">
+            <li className="text-sm md:text-lg font-medium hover:text-[#e7739a] px-9 py-1 border-[1px] border-cyan-500 text-cyan-500 transition-all ease-in-out duration-200">
                 <Link>Lifestyle</Link>
               </li>
-              <li className="text-sm md:text-lg font-medium hover:text-[#e7739a] px-9 py-2 border-[1px] border-cyan-500 text-cyan-500 transition-all ease-in-out duration-200">
+              <li className="text-sm md:text-lg font-medium hover:text-[#e7739a] px-9 py-1 border-[1px] border-cyan-500 text-cyan-500 transition-all ease-in-out duration-200">
                 <Link>Earthly</Link>
               </li>
-              <li className="text-sm md:text-lg font-medium hover:text-[#e7739a] px-9 py-2 border-[1px] border-cyan-500 text-cyan-500 transition-all ease-in-out duration-200">
+              <li className="text-sm md:text-lg font-medium hover:text-[#e7739a] px-9 py-1 border-[1px] border-cyan-500 text-cyan-500 transition-all ease-in-out duration-200">
                 <Link>Travel tips</Link>
               </li>
-              <li className="text-sm md:text-lg font-medium hover:text-[#e7739a] px-9 py-2 border-[1px] border-cyan-500 text-cyan-500 transition-all ease-in-out duration-200">
+              <li className="text-sm md:text-lg font-medium hover:text-[#e7739a] px-9 py-1 border-[1px] border-cyan-500 text-cyan-500 transition-all ease-in-out duration-200">
                 <Link>Events</Link>
               </li>
             </ul>
