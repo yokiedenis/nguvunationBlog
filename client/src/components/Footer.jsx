@@ -98,7 +98,7 @@ const Footer = () => {
                 <Link>Volunteer</Link>
               </li>
               <li className="text-sm md:text-lg font-medium hover:text-[#e7739a] px-3 py-1 border-[1px] border-cyan-500 text-cyan-500 transition-all ease-in-out duration-200">
-                <Link>Programs</Link>
+                <Link>loremsum20</Link>
                 </li>
                 <li className="text-sm md:text-lg font-medium hover:text-[#e7739a] px-3 py-1 border-[1px] border-cyan-500 text-cyan-500 transition-all ease-in-out duration-200">
               <Link>Resources</Link>
