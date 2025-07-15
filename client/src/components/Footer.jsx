@@ -127,7 +127,7 @@ const Footer = () => {
       <div className="bg-black text-white text-center py-5 flex justify-between max-sm:flex-col max-sm:items-center max-sm:gap-3 px-5">
         <p className="flex items-center flex-wrap justify-center text-[15px] font-medium">
           Website underdevelopment{" "}
-          <FaHeart className="mx-2 text-red-500" />Yokas, Milcan, Custer'ed, Rukundo this
+          <FaHeart className="mx-2 text-red-500" />yokas, milcan, custer'ed, rukundo this
         </p>
         <p>© 2025 <Link className="mx-2 text-[#34b9be]">Nguvu Nation Foundation</Link></p>
         <button className="bg-[#e7739a]  hover:bg-cyan-500 text-white hover:text-white flex items-center gap-2 text-[15px] transition-all ease-in-out duration-200 py-3 font-medium px-3 rounded-lg w-fit">
