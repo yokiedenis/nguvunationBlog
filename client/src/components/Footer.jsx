@@ -118,7 +118,7 @@ const Footer = () => {
                 <Link>Travel tips</Link>
               </li>
               <li className="text-sm md:text-lg font-medium hover:text-[#e7739a] px-9 py-1 border-[1px] border-cyan-500 text-cyan-500 transition-all ease-in-out duration-200">
-                <Link>Gallery</Link>
+                <Link>Art Gallery</Link>
               </li>
             </ul>
           </div>
