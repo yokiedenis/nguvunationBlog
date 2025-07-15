@@ -50,7 +50,7 @@ const Footer = () => {
                     access to basic education and life opportunities
           </p> */}
           <ul className="flex items-center gap-3 text-sm text-white">
-            <li className="p-3 rounded-md cursor-pointer  bg-[#e7739a] text-white hover:bg-cyan-500 transition-all ease-in-out duration-200">
+            <li className="p-3 rounded-md cursor-pointer  bg-[#e7739a] text-[#078930] hover:bg-cyan-500 transition-all ease-in-out duration-200">
               <FaFacebookF />
             </li>
             <li className="p-3 rounded-md cursor-pointer bg-[#e7739a] text-black text-white hover:bg-cyan-500 transition-all ease-in-out duration-200">
@@ -118,7 +118,7 @@ const Footer = () => {
                 <Link>Travel tips</Link>
               </li>
               <li className="text-sm md:text-lg font-medium hover:text-[#e7739a] px-9 py-1 border-[1px] border-cyan-500 text-[#34b9be] transition-all ease-in-out duration-200">
-                <Link>Art Gallery</Link>
+                <Link>Creativity</Link>
               </li>
             </ul>
           </div>
