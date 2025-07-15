@@ -107,16 +107,16 @@ const Footer = () => {
           <div>
             {/* <h4 className="text-xl font-medium text-white">Category</h4> */}
             <ul className="text-white mt-5 text-base  flex flex-col gap-2">
-            <li className="text-sm md:text-lg font-medium hover:text-[#e7739a] px-3 py-1 border-[1px] border-cyan-500 text-cyan-500 transition-all ease-in-out duration-200">
+            <li className="text-sm md:text-lg font-medium hover:text-[#e7739a] px-9 py-2 border-[1px] border-cyan-500 text-cyan-500 transition-all ease-in-out duration-200">
                 <Link>Lifestyle</Link>
               </li>
-              <li className="text-sm md:text-lg font-medium hover:text-[#e7739a] px-3 py-1 border-[1px] border-cyan-500 text-cyan-500 transition-all ease-in-out duration-200">
+              <li className="text-sm md:text-lg font-medium hover:text-[#e7739a] px-9 py-2 border-[1px] border-cyan-500 text-cyan-500 transition-all ease-in-out duration-200">
                 <Link>Earthly</Link>
               </li>
-              <li className="text-sm md:text-lg font-medium hover:text-[#e7739a] px-3 py-1 border-[1px] border-cyan-500 text-cyan-500 transition-all ease-in-out duration-200">
+              <li className="text-sm md:text-lg font-medium hover:text-[#e7739a] px-9 py-2 border-[1px] border-cyan-500 text-cyan-500 transition-all ease-in-out duration-200">
                 <Link>Travel tips</Link>
               </li>
-              <li className="text-sm md:text-lg font-medium hover:text-[#e7739a] px-3 py-1 border-[1px] border-cyan-500 text-cyan-500 transition-all ease-in-out duration-200">
+              <li className="text-sm md:text-lg font-medium hover:text-[#e7739a] px-9 py-2 border-[1px] border-cyan-500 text-cyan-500 transition-all ease-in-out duration-200">
                 <Link>Events</Link>
               </li>
             </ul>
@@ -125,9 +125,10 @@ const Footer = () => {
       </div>
       <div className="bg-black text-white text-center py-5 flex justify-between max-sm:flex-col max-sm:items-center max-sm:gap-3 px-5">
         <p className="flex items-center flex-wrap justify-center text-[15px] font-medium">
-          © 2025 <Link className="mx-2 text-cyan-500">Nguvu Nation</Link> . Made with{" "}
-          <FaHeart className="mx-2 text-red-500" /> by yoki3, Milan, custer, runkundo this
+          Website powered with{" "}
+          <FaHeart className="mx-2 text-red-500" /> by Yoki3, Milan, Custer'ed, Rukundo this
         </p>
+        <p>© 2025 <Link className="mx-2 text-cyan-500">Nguvu Nation <br/> </Link></p>
         <button className="bg-[#e7739a]  hover:bg-cyan-500 text-custom-black hover:text-white flex items-center gap-2 text-[15px] transition-all ease-in-out duration-200 py-3 font-medium px-3 rounded-lg w-fit">
           Share your thinking <BsArrowRight />
         </button>
