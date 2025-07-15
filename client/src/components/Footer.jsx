@@ -12,6 +12,8 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import axios from "axios";
 import { toast } from "react-toastify";
+import "../index.css";
+
 
 const Footer = () => {
   const { register, handleSubmit, reset } = useForm();
@@ -62,42 +64,13 @@ const Footer = () => {
           </ul>
         </div>
 
-        <div>
-          {/* subscription form  */}
-          <h4 className="text-xl font-medium text-white max-lg:text-center">
-            Subscribe
-          </h4>
-          <form
-            onSubmit={handleSubmit(onSubmit)}
-            className="flex flex-col gap-3 w-fit mt-5"
-          >
-            <input
-              type="text"
-              name="name"
-              {...register("name", { required: true })}
-              className="bg-custom-light-black text-white h-14 px-5 rounded-lg outline-none placeholder:text-white"
-              placeholder="Your Name"
-            />
-            <input
-              type="email"
-              name="email"
-              {...register("email", { required: true })}
-              className="bg-custom-light-black text-white h-14 px-5 rounded-lg outline-none placeholder:text-white"
-              placeholder="Your Email Address"
-            />
-            <button
-              disabled={loading}
-              type="submit"
-              className="bg-[#e7739a] hover:bg-cyan-500 hover:text-white transition-all ease-in-out duration-200 py-3 text-lg font-medium px-3 rounded-lg"
-            >
-              {loading ? "Subscribing" : "Subscribe Now"}
-            </button>
-          </form>
-        </div>
-        <div className="flex justify-evenly gap-10 max-[561px]:flex-col text-center">
+        <div className="flex justify-evenly gap-10 max-[561px]:flex-col text-center mx-5px">
           {/* links list */}
           <div>
-            <h4 className="text-xl font-medium text-white">Nguvu Nation</h4>
+          <div className="wavyHeading">
+  <h5>NguvuNation</h5>
+  <h5>NguvuNation</h5>
+</div>
             <ul className="text-white mt-5 text-base flex flex-col gap-2">
               <li className="hover:text-cyan-500 transition-all ease-in-out duration-200">
               <Link to="/contact-us">Contact Us</Link>
@@ -112,7 +85,7 @@ const Footer = () => {
             </ul>
           </div>
           <div>
-            <h4 className="text-xl font-medium text-white">Quick Links</h4>
+            {/* <h4 className="text-xl font-medium text-white">Quick Links</h4> */}
             <ul className="text-white mt-5 text-base flex flex-col gap-2">
               <li className="hover:text-cyan-500 transition-all ease-in-out duration-200">
               <Link>Shop</Link>
@@ -129,7 +102,7 @@ const Footer = () => {
             </ul>
           </div>
           <div>
-            <h4 className="text-xl font-medium text-white">Category</h4>
+            {/* <h4 className="text-xl font-medium text-white">Category</h4> */}
             <ul className="text-white mt-5 text-base  flex flex-col gap-2">
               <li className="hover:text-cyan-500 transition-all ease-in-out duration-200">
                 <Link>Lifestyle</Link>
