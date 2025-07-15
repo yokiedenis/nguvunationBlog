@@ -7,10 +7,10 @@ body{
 }
 /* src/styles/WavyHeading.css */
 
-.wavyHeading {
+/* .wavyHeading {
     position: relative;
     top: -30px;
-  }
+  } */
   
   .wavyHeading h5 {
     font-size: 3em;
@@ -53,5 +53,8 @@ body{
         position: absolute;
         left: 500px;
         bottom: 200px;
+    }
+    .wavyHeading h5 {
+        font-size: 1.5em;
     }
   }
