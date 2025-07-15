@@ -69,8 +69,8 @@ const Footer = () => {
           {/* links list */}
           <div>
           <div className="wavyHeading">
-  <h5>NguvuNation</h5>
-  <h5>NguvuNation</h5>
+  <h5><span className="text-[#34b9be]"> N</span><span className="text-[#e7739a]">guvu</span><span className="text-[#34b9be]">ation</span></h5>
+    <h5><span className="text-[#34b9be]"> N</span><span className="text-[#e7739a]">guvu</span><span className="text-[#34b9be]">ation</span></h5>
 </div>
             <ul className="text-white mt-5 text-base flex flex-col gap-2">
             <li className="text-sm md:text-lg font-medium hover:text-[#e7739a] px-3 py-1 border-[1px] border-cyan-500 text-cyan-500 transition-all ease-in-out duration-200">
