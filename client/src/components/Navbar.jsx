@@ -184,11 +184,11 @@ export const Navbar = () => {
             </figure>
           </div>
           <h2 className="hidden lg:block text-3xl font-semibold text-center text-custom-light-black">
-  <span className="text-cyan-500"> N</span>
+  <span className="text-[#34b9be]"> N</span>
   <span className="text-[#e7739a]">guvu</span>
   {' '}
   <span className="text-[#e7739a]">N</span>
-  <span className="text-cyan-500">ation</span>
+  <span className="text-[#34b9be]">ation</span>
 </h2>
           <div className="flex items-center gap-3 md:gap-5">
             <button
