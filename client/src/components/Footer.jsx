@@ -92,7 +92,7 @@ const Footer = () => {
             {/* <h4 className="text-xl font-medium text-white">Quick Links</h4> */}
             <ul className="text-white mt-5 text-base flex flex-col gap-2">
               <li className="text-sm md:text-lg font-medium hover:text-[#e7739a] px-3 py-1 border-[1px] border-cyan-500 text-[#34b9be] transition-all ease-in-out duration-200">
-              <Link>Events</Link>
+              <Link>Resources</Link>
               </li>
               <li className="text-sm md:text-lg font-medium hover:text-[#e7739a] px-3 py-1 border-[1px] border-cyan-500 text-[#34b9be] transition-all ease-in-out duration-200">
                 <Link>Volunteer</Link>
@@ -101,7 +101,7 @@ const Footer = () => {
                 <Link>Community</Link>
                 </li>
                 <li className="text-sm md:text-lg font-medium hover:text-[#e7739a] px-3 py-1 border-[1px] border-cyan-500 text-[#34b9be] transition-all ease-in-out duration-200">
-              <Link>Resources</Link>
+              <Link>Spirituality</Link>
               </li>
             </ul>
           </div>
