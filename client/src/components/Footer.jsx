@@ -50,7 +50,7 @@ const Footer = () => {
                     access to basic education and life opportunities
           </p> */}
           <ul className="flex items-center gap-3 text-sm text-white">
-            <li className="p-3 rounded-md cursor-pointer  bg-[#e7739a] text-[#078930] hover:bg-cyan-500 transition-all ease-in-out duration-200">
+            <li className="p-3 rounded-md cursor-pointer  bg-[#e7739a] text-white hover:bg-cyan-500 transition-all ease-in-out duration-200">
               <FaFacebookF />
             </li>
             <li className="p-3 rounded-md cursor-pointer bg-[#e7739a] text-black text-white hover:bg-cyan-500 transition-all ease-in-out duration-200">
@@ -84,7 +84,7 @@ const Footer = () => {
                 <Link>FAQ&apos;s</Link>
               </li>
               <li className="text-sm md:text-lg font-medium hover:text-[#e7739a] px-3 py-1 border-[1px] border-cyan-500 text-[#34b9be] transition-all ease-in-out duration-200">
-                <Link>Mentorship</Link>
+                <Link>Mentorship.tech</Link>
               </li>
             </ul>
           </div>
@@ -109,10 +109,10 @@ const Footer = () => {
             {/* <h4 className="text-xl font-medium text-white">Category</h4> */}
             <ul className="text-white mt-5 text-base  flex flex-col gap-2">
             <li className="text-sm md:text-lg font-medium hover:text-[#e7739a] px-9 py-1 border-[1px] border-cyan-500 text-[#34b9be] transition-all ease-in-out duration-200">
-                <Link>Lifestyle</Link>
+                <Link>Mental Heatlh</Link>
               </li>
               <li className="text-sm md:text-lg font-medium hover:text-[#e7739a] px-9 py-1 border-[1px] border-cyan-500 text-[#34b9be] transition-all ease-in-out duration-200">
-                <Link>Earthly</Link>
+                <Link>Football</Link>
               </li>
               <li className="text-sm md:text-lg font-medium hover:text-[#e7739a] px-9 py-1 border-[1px] border-cyan-500 text-[#34b9be] transition-all ease-in-out duration-200">
                 <Link>Travel tips</Link>
@@ -126,7 +126,7 @@ const Footer = () => {
       </div>
       <div className="bg-black text-white text-center py-5 flex justify-between max-sm:flex-col max-sm:items-center max-sm:gap-3 px-5">
         <p className="flex items-center flex-wrap justify-center text-[15px] font-medium">
-          Website underdevelopment{" "}
+          Website underdevelopment, 1{" "}
           <FaHeart className="mx-2 text-red-500" />yokas, milcan, custer'ed, rukundo this
         </p>
         <p>© 2025 <Link className="mx-2 text-[#34b9be]">Nguvu Nation Foundation</Link></p>
