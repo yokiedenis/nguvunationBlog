@@ -70,7 +70,7 @@ const Footer = () => {
           <div>
           <div className="wavyHeading">
   <h5><span className="text-white"> N</span><span className="text-white">guvu</span><span className="text-white">nation</span></h5>
-    <h5><span className="text-[#34b9be]"> N</span><span className="text-[#e7739a]">guvu</span><span className="text-[#34b9be]">nation</span></h5>
+    <h5><span className="text-[#e7739a]"> N</span><span className="text-[#e7739a]">guvu</span><span className="text-[#34b9be]">nation</span></h5>
 </div>
             <ul className="text-white mt-5 text-base flex flex-col gap-2">
             <li className="text-sm md:text-lg font-medium hover:text-[#e7739a] px-3 py-1 border-[1px] border-cyan-500 text-[#34b9be] transition-all ease-in-out duration-200">
