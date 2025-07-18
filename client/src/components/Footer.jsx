@@ -50,16 +50,16 @@ const Footer = () => {
                     access to basic education and life opportunities
           </p> */}
           <ul className="flex items-center gap-3 text-sm text-white">
-            <li className="p-3 rounded-md cursor-pointer  bg-[#e7739a] text-white hover:bg-cyan-500 transition-all ease-in-out duration-200">
+            <li className="p-3 rounded-md cursor-pointer  bg-[#e7739a] text-bg-cyan-300 hover:bg-cyan-500 transition-all ease-in-out duration-200">
               <FaFacebookF />
             </li>
-            <li className="p-3 rounded-md cursor-pointer bg-[#e7739a] text-black text-white hover:bg-cyan-500 transition-all ease-in-out duration-200">
+            <li className="p-3 rounded-md cursor-pointer bg-[#e7739a] text-bg-cyan-300 text-white hover:bg-cyan-500 transition-all ease-in-out duration-200">
               <FaTwitter />
             </li>
-            <li className="bg-[#e7739a] hover:bg-cyan-500 p-3 text-black rounded-md text-white cursor-pointer transition-all ease-in-out duration-200">
+            <li className="bg-[#e7739a] hover:bg-cyan-500 p-3 text-bg-cyan-300 rounded-md text-white cursor-pointer transition-all ease-in-out duration-200">
               <FaInstagram />
             </li>
-            <li className=" p-3 rounded-md cursor-pointer bg-[#e7739a] text-black text-white hover:bg-cyan-500 transition-all ease-in-out duration-200">
+            <li className=" p-3 rounded-md cursor-pointer bg-[#e7739a] text-bg-cyan-300 text-white hover:bg-cyan-500 transition-all ease-in-out duration-200">
               <FaLinkedinIn />
             </li>
           </ul>
@@ -69,8 +69,8 @@ const Footer = () => {
           {/* links list */}
           <div>
           <div className="wavyHeading">
-  <h5><span className="text-white"> N</span><span className="text-white">guvu</span><span className="text-white">ation</span></h5>
-    <h5><span className="text-[#34b9be]"> N</span><span className="text-[#e7739a]">guvu</span><span className="text-[#34b9be]">ation</span></h5>
+  <h5><span className="text-white"> N</span><span className="text-white">guvu</span><span className="text-white">nation</span></h5>
+    <h5><span className="text-[#34b9be]"> N</span><span className="text-[#e7739a]">guvu</span><span className="text-[#34b9be]">nation</span></h5>
 </div>
             <ul className="text-white mt-5 text-base flex flex-col gap-2">
             <li className="text-sm md:text-lg font-medium hover:text-[#e7739a] px-3 py-1 border-[1px] border-cyan-500 text-[#34b9be] transition-all ease-in-out duration-200">
@@ -84,7 +84,7 @@ const Footer = () => {
                 <Link>FAQ&apos;s</Link>
               </li>
               <li className="text-sm md:text-lg font-medium hover:text-[#e7739a] px-3 py-1 border-[1px] border-cyan-500 text-[#34b9be] transition-all ease-in-out duration-200">
-                <Link>Mentorship.tech</Link>
+                <Link>Mentorship</Link>
               </li>
             </ul>
           </div>
