@@ -346,6 +346,16 @@ export const Home = () => {
             Trending Topic
           </h4>
           <div className="flex items-center gap-3 mt-5">
+          <img
+            src={newsletter1}
+            alt=""
+            className="absolute bottom-0 left-[20%] max-md:left-[5%] max-sm:hidden"
+          />
+          <img
+            src={newsletter2}
+            alt=""
+            className="absolute bottom-0 right-[2%] max-md:right-0 max-sm:hidden"
+          />
             <button
               className="bg-[#e7739a] hover:bg-cyan-500 transition-all ease-in-out duration-200 text-white p-2 rounded-md"
               onClick={previous}
@@ -358,6 +368,7 @@ export const Home = () => {
             >
               <CgArrowLongRight className="w-5 h-5" />
             </button>
+            
           </div>
         </div>
 
@@ -755,45 +766,6 @@ export const Home = () => {
       )}
 
       
-      <section className="px-20 py-20 bg-[#FAFAFA] max-md:px-5">
-        <div className="flex max-lg:flex-col items-center gap-5 relative bg-white rounded-xl h-56 px-20 py-4 max-md:px-5">
-          <h4 className="text-2xl font-semibold text-neutral-700 max-lg:w-full max-lg:text-center">
-            Subscribe For Newsletter
-          </h4>
-          <form
-            onSubmit={handleSubmit(onSubmit)}
-            className=" w-2/3 max-md:w-full"
-          >
-            <div className="flex items-center gap-5 max-lg:flex-col">
-              <input
-                type="text"
-                placeholder="Enter your email"
-                {...register("email", { required: "Email is required" })}
-                className="h-14 px-5 rounded-lg border outline-none border-gray-200 w-2/3 max-lg:w-full"
-              />
-              <button
-                disabled={loading}
-                type="submit"
-                className="bg-[#e7739a] hover:bg-cyan-500 px-5 text-white  transition-all ease-in-out duration-200 py-[14px] font-medium text-[17px] rounded-lg"
-              >
-                {loading ? "Subscribing" : "Subscribe Now"}
-              </button>
-            </div>
-            {success && <p className="text-green-500">{success}</p>}
-            {error && <p className="text-red-500">{error}</p>}
-          </form>
-          <img
-            src={newsletter1}
-            alt=""
-            className="absolute bottom-0 left-[20%] max-md:left-[5%] max-sm:hidden"
-          />
-          <img
-            src={newsletter2}
-            alt=""
-            className="absolute bottom-0 right-[2%] max-md:right-0 max-sm:hidden"
-          />
-        </div>
-      </section>
       <section className="px-20 py-20 max-[480px]:px-5">
         <h4 className="text-3xl font-semibold text-neutral-800">
           Featured Blogs
@@ -933,49 +905,6 @@ export const Home = () => {
           </div>
           <div className="w-[30%] flex flex-col gap-8 max-lg:w-full">
             <LatestPostSection />
-            <div className="bg-[#FAFAFA] rounded-xl px-5 py-4">
-              <h4 className="text-2xl text-center font-semibold text-neutral-800">
-                Stay In Touch
-              </h4>
-              <div className="grid grid-cols-3 gap-3 mt-8">
-                <div className="flex flex-col items-center px-4 py-3 rounded-xl bg-gray-200 hover:bg-gray-300 transition-all ease-in-out duration-200 cursor-pointer">
-                  <figure className="p-3 bg-[#4867AA] w-fit rounded-full text-white">
-                    <FaFacebookF />
-                  </figure>
-                  <span className="text-sm">5,685k</span>
-                </div>
-                <div className="flex flex-col items-center px-4 py-3 rounded-xl bg-gray-200 hover:bg-gray-300 transition-all ease-in-out duration-200 cursor-pointer">
-                  <figure className="p-3 bg-[#1DA1F2] w-fit rounded-full text-white">
-                    <FaTwitter />
-                  </figure>
-                  <span className="text-sm">5,685k</span>
-                </div>
-                <div className="flex flex-col items-center px-4 py-3 rounded-xl bg-gray-200 hover:bg-gray-300 transition-all ease-in-out duration-200 cursor-pointer">
-                  <figure className="p-3 bg-[#1869FF] w-fit rounded-full text-white">
-                    <FaBehance />
-                  </figure>
-                  <span className="text-sm">5,685k</span>
-                </div>
-                <div className="flex flex-col items-center px-4 py-3 rounded-xl bg-gray-200 hover:bg-gray-300 transition-all ease-in-out duration-200 cursor-pointer">
-                  <figure className="p-3 bg-[#FE0000] w-fit rounded-full text-white">
-                    <FaYoutube />
-                  </figure>
-                  <span className="text-sm">5,685k</span>
-                </div>
-                <div className="flex flex-col items-center px-4 py-3 rounded-xl bg-gray-200 hover:bg-gray-300 transition-all ease-in-out duration-200 cursor-pointer">
-                  <figure className="p-3 bg-[#EA4C8A] w-fit rounded-full text-white">
-                    <FaDribbble />
-                  </figure>
-                  <span className="text-sm">5,685k</span>
-                </div>
-                <div className="flex flex-col items-center px-4 py-3 rounded-xl bg-gray-200 hover:bg-gray-300 transition-all ease-in-out duration-200 cursor-pointer">
-                  <figure className="p-3 bg-[#007BB6] w-fit rounded-full text-white">
-                    <FaLinkedin />
-                  </figure>
-                  <span className="text-sm">5,685k</span>
-                </div>
-              </div>
-            </div>
           </div>
         </div>
         {isModalOpen && (
