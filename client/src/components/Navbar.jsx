@@ -457,7 +457,7 @@ export const Navbar = () => {
                   className="text-sm md:text-lg font-medium hover:text-[#e7739a]  px-3 py-1 border-[1px] border-cyan-500 text-cyan-500 transition-all ease-in-out duration-200"
                   to="/gallery"
                 >
-                  Gallery
+                  Videos
                 </Link>
               </li>
             </ul>
