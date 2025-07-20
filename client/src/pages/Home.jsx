@@ -406,6 +406,167 @@ export const Home = () => {
         </div>
       </section>
 
+      <section className="px-20 py-20 max-[480px]:px-5">
+        <h4 className="text-3xl font-semibold text-neutral-800">
+          Featured Blogs
+        </h4>
+        <div className="flex gap-8 mt-7 max-lg:flex-col">
+          <div className="w-[70%] max-lg:w-full flex gap-3 max-md:flex-col max-md:w-full">
+            <div className="w-[50%] flex flex-col gap-10 max-md:w-full">
+              {firstColumnBlogs.map((item, index) => {
+                return (
+                  <div
+                    key={index}
+                    className="flex flex-col cursor-pointer gap-3"
+                  >
+                    <div className="w-full">
+                      <figure className="h-[300px] max-md:w-full max-md:h-[200px]">
+                        <img
+                          src={item.coverImage}
+                          alt={item.title}
+                          className="rounded-xl w-full h-[inherit] object-cover"
+                        />
+                      </figure>
+                    </div>
+                    <div className="flex flex-col gap-2">
+                      <div className="flex justify-between items-center gap-3">
+                        <span className="bg-yellow-200 px-4 py-2 text-sm font-medium text-neutral-600 rounded-xl">
+                          {item.category.name}
+                        </span>
+                        <span className="flex gap-1 items-center">
+                          <LuCalendarDays />
+                          {new Date(item.publishedDate).toLocaleDateString(
+                            "en-US",
+                            {
+                              year: "numeric",
+                              month: "long",
+                              day: "numeric",
+                            }
+                          )}
+                        </span>
+                        <div className="text-xl flex gap-2 items-center">
+                          <button onClick={() => handleSaveClick(item?._id)}>
+                            {savedPosts.includes(item?._id) ? (
+                              <BsBookmarkCheckFill />
+                            ) : (
+                              <BsBookmarkDash />
+                            )}
+                          </button>
+                          <button onClick={() => handleLikeClick(item?._id)}>
+                            {likedBlogs.includes(item._id) ? (
+                              <FaHeart className="text-red-500" />
+                            ) : (
+                              <FaRegHeart />
+                            )}
+                          </button>
+                          <span>{item.likes.length}</span>
+                        </div>
+                      </div>
+                      <h5 className="text-2xl font-medium ">
+                        <Link
+                          to={`/blog-post/${item._id}`}
+                          className="hover:text-orange-400 transition-all ease-in-out duration-200"
+                        >
+                          {item.title.length > 50
+                            ? `${item.title.slice(0, 50)}...`
+                            : item.title}
+                        </Link>
+                      </h5>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+            <div className="w-[50%] grid grid-cols-1 grid-rows-3 gap-3 max-md:w-full">
+              {secondColumnBlogs.map((item, index) => {
+                return (
+                  <div
+                    key={index}
+                    className="flex flex-col cursor-pointer gap-3"
+                  >
+                    <div className="w-full">
+                      <figure>
+                        <img
+                          src={item.coverImage}
+                          alt={item.title}
+                          className="rounded-xl object-cover h-40 w-full"
+                        />
+                      </figure>
+                    </div>
+                    <div className="flex flex-col gap-2">
+                      <div className="flex justify-between items-center gap-3">
+                        <span className="bg-yellow-200 px-4 py-2 text-sm font-medium text-neutral-600 rounded-xl">
+                          {item.category.name}
+                        </span>
+                        <span className="flex gap-1 items-center">
+                          <LuCalendarDays />
+                          {new Date(item.publishedDate).toLocaleDateString(
+                            "en-US",
+                            {
+                              year: "numeric",
+                              month: "long",
+                              day: "numeric",
+                            }
+                          )}
+                        </span>
+                        <div className="text-xl flex gap-2 items-center">
+                          <button onClick={() => handleSaveClick(item?._id)}>
+                            {savedPosts.includes(item?._id) ? (
+                              <BsBookmarkCheckFill />
+                            ) : (
+                              <BsBookmarkDash />
+                            )}
+                          </button>
+                          <button onClick={() => handleLikeClick(item?._id)}>
+                            {likedBlogs.includes(item._id) ? (
+                              <FaHeart className="text-red-500" />
+                            ) : (
+                              <FaRegHeart />
+                            )}
+                          </button>
+                          <span>{item.likes.length}</span>
+                        </div>
+                      </div>
+                      <h5 className="text-lg font-medium ">
+                        <Link
+                          to={`/blog-post/${item._id}`}
+                          className="hover:text-orange-400 transition-all ease-in-out duration-200"
+                        >
+                          {item.title.length > 50
+                            ? `${item.title.slice(0, 50)}...`
+                            : item.title}
+                        </Link>
+                      </h5>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+          <div className="w-[30%] flex flex-col gap-8 max-lg:w-full">
+            <LatestPostSection />
+          </div>
+        </div>
+        {isModalOpen && (
+          <div className="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50">
+            <div className="relative w-[70%] mx-auto">
+              <button
+                className="absolute -top-[10%] right-0 text-5xl text-white"
+                onClick={closeModal} // Close modal on click
+              >
+                &times;
+              </button>
+              <ReactPlayer
+                url="https://youtu.be/va0XcdDBGhI?si=eiymom8Fj68ti9Jf" // Replace with your video URL
+                controls
+                playing
+                width="100%"
+                height="500px"
+              />
+            </div>
+          </div>
+        )}
+      </section>
       <section className="p-6 md:p-16 bg-zinc-100 flex max-lg:flex-col gap-8 md:gap-12 w-full">
         {blogs.length > 0 ? (
           <>
@@ -766,167 +927,6 @@ export const Home = () => {
       )}
 
       
-      <section className="px-20 py-20 max-[480px]:px-5">
-        <h4 className="text-3xl font-semibold text-neutral-800">
-          Featured Blogs
-        </h4>
-        <div className="flex gap-8 mt-7 max-lg:flex-col">
-          <div className="w-[70%] max-lg:w-full flex gap-3 max-md:flex-col max-md:w-full">
-            <div className="w-[50%] flex flex-col gap-10 max-md:w-full">
-              {firstColumnBlogs.map((item, index) => {
-                return (
-                  <div
-                    key={index}
-                    className="flex flex-col cursor-pointer gap-3"
-                  >
-                    <div className="w-full">
-                      <figure className="h-[300px] max-md:w-full max-md:h-[200px]">
-                        <img
-                          src={item.coverImage}
-                          alt={item.title}
-                          className="rounded-xl w-full h-[inherit] object-cover"
-                        />
-                      </figure>
-                    </div>
-                    <div className="flex flex-col gap-2">
-                      <div className="flex justify-between items-center gap-3">
-                        <span className="bg-yellow-200 px-4 py-2 text-sm font-medium text-neutral-600 rounded-xl">
-                          {item.category.name}
-                        </span>
-                        <span className="flex gap-1 items-center">
-                          <LuCalendarDays />
-                          {new Date(item.publishedDate).toLocaleDateString(
-                            "en-US",
-                            {
-                              year: "numeric",
-                              month: "long",
-                              day: "numeric",
-                            }
-                          )}
-                        </span>
-                        <div className="text-xl flex gap-2 items-center">
-                          <button onClick={() => handleSaveClick(item?._id)}>
-                            {savedPosts.includes(item?._id) ? (
-                              <BsBookmarkCheckFill />
-                            ) : (
-                              <BsBookmarkDash />
-                            )}
-                          </button>
-                          <button onClick={() => handleLikeClick(item?._id)}>
-                            {likedBlogs.includes(item._id) ? (
-                              <FaHeart className="text-red-500" />
-                            ) : (
-                              <FaRegHeart />
-                            )}
-                          </button>
-                          <span>{item.likes.length}</span>
-                        </div>
-                      </div>
-                      <h5 className="text-2xl font-medium ">
-                        <Link
-                          to={`/blog-post/${item._id}`}
-                          className="hover:text-orange-400 transition-all ease-in-out duration-200"
-                        >
-                          {item.title.length > 50
-                            ? `${item.title.slice(0, 50)}...`
-                            : item.title}
-                        </Link>
-                      </h5>
-                    </div>
-                  </div>
-                );
-              })}
-            </div>
-            <div className="w-[50%] grid grid-cols-1 grid-rows-3 gap-3 max-md:w-full">
-              {secondColumnBlogs.map((item, index) => {
-                return (
-                  <div
-                    key={index}
-                    className="flex flex-col cursor-pointer gap-3"
-                  >
-                    <div className="w-full">
-                      <figure>
-                        <img
-                          src={item.coverImage}
-                          alt={item.title}
-                          className="rounded-xl object-cover h-40 w-full"
-                        />
-                      </figure>
-                    </div>
-                    <div className="flex flex-col gap-2">
-                      <div className="flex justify-between items-center gap-3">
-                        <span className="bg-yellow-200 px-4 py-2 text-sm font-medium text-neutral-600 rounded-xl">
-                          {item.category.name}
-                        </span>
-                        <span className="flex gap-1 items-center">
-                          <LuCalendarDays />
-                          {new Date(item.publishedDate).toLocaleDateString(
-                            "en-US",
-                            {
-                              year: "numeric",
-                              month: "long",
-                              day: "numeric",
-                            }
-                          )}
-                        </span>
-                        <div className="text-xl flex gap-2 items-center">
-                          <button onClick={() => handleSaveClick(item?._id)}>
-                            {savedPosts.includes(item?._id) ? (
-                              <BsBookmarkCheckFill />
-                            ) : (
-                              <BsBookmarkDash />
-                            )}
-                          </button>
-                          <button onClick={() => handleLikeClick(item?._id)}>
-                            {likedBlogs.includes(item._id) ? (
-                              <FaHeart className="text-red-500" />
-                            ) : (
-                              <FaRegHeart />
-                            )}
-                          </button>
-                          <span>{item.likes.length}</span>
-                        </div>
-                      </div>
-                      <h5 className="text-lg font-medium ">
-                        <Link
-                          to={`/blog-post/${item._id}`}
-                          className="hover:text-orange-400 transition-all ease-in-out duration-200"
-                        >
-                          {item.title.length > 50
-                            ? `${item.title.slice(0, 50)}...`
-                            : item.title}
-                        </Link>
-                      </h5>
-                    </div>
-                  </div>
-                );
-              })}
-            </div>
-          </div>
-          <div className="w-[30%] flex flex-col gap-8 max-lg:w-full">
-            <LatestPostSection />
-          </div>
-        </div>
-        {isModalOpen && (
-          <div className="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50">
-            <div className="relative w-[70%] mx-auto">
-              <button
-                className="absolute -top-[10%] right-0 text-5xl text-white"
-                onClick={closeModal} // Close modal on click
-              >
-                &times;
-              </button>
-              <ReactPlayer
-                url="https://youtu.be/va0XcdDBGhI?si=eiymom8Fj68ti9Jf" // Replace with your video URL
-                controls
-                playing
-                width="100%"
-                height="500px"
-              />
-            </div>
-          </div>
-        )}
-      </section>
     </>
   );
 };
