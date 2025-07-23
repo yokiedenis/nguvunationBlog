@@ -13,7 +13,7 @@
   const { Usage } = require("./models/UsageSchema");
   const { Storage } = require("./models/StorageSchema");
   const { Gallery } = require("./models/GallerySchema");
-  const mongoose = require("./config/db");
+  // const mongoose = require("./config/db");
   // FIXED: Removed duplicate queries route import
   const queries = require("./routers/queries");
   const axios = require("axios"); // Added missing axios import
