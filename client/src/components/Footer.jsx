@@ -125,10 +125,10 @@ const Footer = () => {
         </div>
       </div>
       <div className="bg-black text-white text-center py-5 flex justify-between max-sm:flex-col max-sm:items-center max-sm:gap-3 px-5">
-      <em
+      <div
             style=" position:absolute; right: 50px; font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif; font-weight: bolder;">powered
             by <span style="color: #d30186;">A'kidi</span> <b><strike>ft</strike></b> <span
-                style="color:#b402ab;">yoki3</span></em><br />
+                style="color:#b402ab;">yoki3</span></div><br />
               <a href="https://github.com/yokiedenis/nguvunationBlog.git">repo</a>
         <p>© 2025 <Link className="mx-2 text-[#34b9be]">Nguvu Nation Foundation</Link></p>
         <button className="bg-[#e7739a]  hover:bg-cyan-500 text-white hover:text-white flex items-center gap-2 text-[15px] transition-all ease-in-out duration-200 py-3 font-medium px-3 rounded-lg w-fit">
