@@ -1,4 +1,4 @@
 server/config/firebaseAdmin/bunzo-blog-website-firebase-admin.json
 # Node modules
-node_modules
-*/node_modules
+node_modules/
+*/node_modules/
