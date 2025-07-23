@@ -14,7 +14,7 @@ function verifyToken(req, res, next) {
   if (!token) return res.status(401).json({ message: 'Authorization token missing' });
 
   try {
-    const decoded = jwt.verify(token, process.env.JWT_SECRET);
+    const decoded = jwt.verify(token, process.env.JWT_SECRET_KEY);
     req.user = decoded;
     next();
   } catch (err) {
@@ -153,7 +153,7 @@ router.post('/add/:userId', (req, res) => {
 
       // Emit event to other services
       try {
-        await axios.post(`${process.env.EVENT_SERVICE_URL}/events`, {
+        await axios.post(`${process.env.FRONTEND_CLIENT_URL}/events`, {
           type: 'videoAdded',
           clientIp: clientIp,
           data: {
@@ -204,7 +204,7 @@ router.delete('/:userId/:videoId', async (req, res) => {
 
     // Emit event to other services
     try {
-      await axios.post(`${process.env.EVENT_SERVICE_URL}/events`, {
+      await axios.post(`${process.env.FRONTEND_CLIENT_URL}/events`, {
         type: 'videoRemoved',
         clientIp: clientIp,
         data: {

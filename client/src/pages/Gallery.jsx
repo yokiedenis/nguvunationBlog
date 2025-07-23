@@ -1,131 +1,137 @@
-// src/components/gallery/Gallery.jsx
 import React, { useState, useEffect } from 'react';
-import { useAuth } from '../store/Authentication';
-import { toast } from 'react-toastify';
+import { useParams } from 'react-router-dom';
 import VideoPlayer from '../components/videoPlayer';
 import UploadForm from '../components/uploadForm';
+import { useAuth } from '../store/Authentication';
 
-const Gallery = () => {
+const EventGallery = () => {
+  const { eventId } = useParams();
   const { user, token } = useAuth();
-  const [gallery, setGallery] = useState(null);
-  const [uploading, setUploading] = useState(false);
+  const [event, setEvent] = useState(null);
+  const [videos, setVideos] = useState([]);
   const [showUploadForm, setShowUploadForm] = useState(false);
-
+  const [loading, setLoading] = useState(true);
+  
   useEffect(() => {
-    if (user && token) {
-      fetchGallery();
-    }
-  }, [user, token]);
-
-  const fetchGallery = async () => {
-    try {
-      const response = await fetch(`${process.env.REACT_APP_GALLERY_SERVICE_URL}/videos/me`, {
-        headers: {
-          'Authorization': `Bearer ${token}`
-        }
-      });
-      
-      const data = await response.json();
-      if (response.ok) {
-        setGallery(data);
-      } else {
-        toast.error(data.message || 'Failed to load gallery');
+    const fetchEventData = async () => {
+      try {
+        setLoading(true);
+        
+        // Fetch event details
+        const eventResponse = await fetch(
+          `${import.meta.env.VITE_SERVER_URL}/events/${eventId}`
+        );
+        const eventData = await eventResponse.json();
+        setEvent(eventData);
+        
+        // Fetch event videos
+        const videosResponse = await fetch(
+          `${import.meta.env.VITE_SERVER_URL}/videos/event/${eventId}`
+        );
+        const videosData = await videosResponse.json();
+        setVideos(videosData.videos || []);
+        
+      } catch (error) {
+        console.error('Error fetching event data:', error);
+      } finally {
+        setLoading(false);
       }
-    } catch (error) {
-      toast.error('Network error');
-    }
-  };
+    };
+    
+    fetchEventData();
+  }, [eventId]);
 
   const handleUploadSuccess = () => {
     setShowUploadForm(false);
-    fetchGallery();
+    fetchEventData(); // Re-fetch data
   };
 
-  const formatBytes = (bytes, decimals = 2) => {
-    if (bytes === 0) return '0 Bytes';
-    const k = 1024;
-    const dm = decimals < 0 ? 0 : decimals;
-    const sizes = ['Bytes', 'KB', 'MB', 'GB'];
-    const i = Math.floor(Math.log(bytes) / Math.log(k));
-    return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + ' ' + sizes[i];
-  };
+  if (loading) {
+    return <div className="text-center py-8">Loading event gallery...</div>;
+  }
+
+  if (!event) {
+    return <div className="text-center py-8">Event not found</div>;
+  }
 
   return (
     <div className="container mx-auto p-4">
-      <div className="flex justify-between items-center mb-6">
-        <h1 className="text-2xl font-bold">My Video Gallery</h1>
-        <button 
-          onClick={() => setShowUploadForm(true)}
-          className="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded"
-        >
-          Upload Video
-        </button>
+      <div className="bg-white rounded-lg shadow-md p-6 mb-6">
+        <h1 className="text-3xl font-bold mb-2">{event.title}</h1>
+        <p className="text-gray-600 mb-4">{event.description}</p>
+        
+        <div className="flex flex-wrap gap-4 mb-6">
+          <div className="flex items-center">
+            <svg className="w-5 h-5 text-gray-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+            </svg>
+            {new Date(event.startDate).toLocaleDateString()} - {new Date(event.endDate).toLocaleDateString()}
+          </div>
+          
+          <div className="flex items-center">
+            <svg className="w-5 h-5 text-gray-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+            </svg>
+            {event.location}
+          </div>
+        </div>
+        
+        <div className="flex justify-between items-center mb-6">
+          <div>
+            <h2 className="text-xl font-semibold">Event Videos</h2>
+            <p className="text-gray-500">
+              {videos.length} video{videos.length !== 1 ? 's' : ''} shared
+            </p>
+          </div>
+          
+          {user && (
+            <button 
+              onClick={() => setShowUploadForm(true)}
+              className="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded"
+            >
+              Share Your Video
+            </button>
+          )}
+        </div>
       </div>
 
       {showUploadForm && (
         <UploadForm 
+          eventId={eventId}
           onClose={() => setShowUploadForm(false)} 
           onSuccess={handleUploadSuccess}
           token={token}
         />
       )}
 
-      {gallery && (
-        <div className="mb-8">
-          <div className="bg-white rounded-lg shadow p-4 mb-6">
-            <h2 className="text-xl font-semibold mb-3">Storage</h2>
-            <div className="mb-2">
-              <span className="font-medium">Available: </span>
-              {formatBytes(gallery.freeStorage)} of {formatBytes(gallery.totalStorage)}
-            </div>
-            <div className="w-full bg-gray-200 rounded-full h-2.5">
-              <div 
-                className="bg-blue-600 h-2.5 rounded-full" 
-                style={{ 
-                  width: `${((gallery.totalStorage - gallery.freeStorage) / gallery.totalStorage) * 100}%` 
-                }}
-              ></div>
-            </div>
-          </div>
-
-          <div className="bg-white rounded-lg shadow p-4 mb-6">
-            <h2 className="text-xl font-semibold mb-3">Bandwidth</h2>
-            <div className="mb-2">
-              <span className="font-medium">Available: </span>
-              {formatBytes(gallery.freeBandwidth)} of {formatBytes(gallery.totalBandwidth)}
-            </div>
-            <div className="w-full bg-gray-200 rounded-full h-2.5">
-              <div 
-                className="bg-green-600 h-2.5 rounded-full" 
-                style={{ 
-                  width: `${((gallery.totalBandwidth - gallery.freeBandwidth) / gallery.totalBandwidth) * 100}%` 
-                }}
-              ></div>
-            </div>
-          </div>
-
-          <h2 className="text-xl font-semibold mb-4">Your Videos</h2>
-          {gallery.videos.length === 0 ? (
-            <div className="text-center py-8">
-              <p className="text-gray-500">No videos uploaded yet</p>
-              <button 
-                onClick={() => setShowUploadForm(true)}
-                className="mt-4 text-blue-500 hover:text-blue-700 font-medium"
-              >
-                Upload your first video
-              </button>
-            </div>
-          ) : (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {gallery.videos.map(video => (
-                <VideoPlayer key={video._id} video={video} />
-              ))}
-            </div>
+      {videos.length === 0 ? (
+        <div className="bg-white rounded-lg shadow-md p-8 text-center">
+          <svg className="w-16 h-16 mx-auto text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" />
+          </svg>
+          <h3 className="text-xl font-semibold mt-4">No Videos Yet</h3>
+          <p className="text-gray-600 mt-2">
+            Be the first to share your experience from this event!
+          </p>
+          {user && (
+            <button
+              onClick={() => setShowUploadForm(true)}
+              className="mt-4 bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded"
+            >
+              Upload Video
+            </button>
           )}
+        </div>
+      ) : (
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {videos.map(video => (
+            <VideoPlayer key={video._id} video={video} />
+          ))}
         </div>
       )}
     </div>
   );
 };
 
-export default Gallery;
+export default EventGallery;

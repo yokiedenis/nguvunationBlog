@@ -26,7 +26,7 @@ const EventGallery = () => {
         
         // Fetch event videos
         const videosResponse = await fetch(
-          `${import.meta.env.VITE_GALLERY_SERVICE_URL}/videos/event/${eventId}`
+          `${import.meta.env.VITE_SERVER_URL}/videos/event/${eventId}`
         );
         const videosData = await videosResponse.json();
         setVideos(videosData.videos || []);

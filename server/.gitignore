@@ -25,3 +25,6 @@ config/firebaseAdmin/*.json
 *.njsproj
 *.sln
 *.sw?
+
+service-account-key.json
+*.json

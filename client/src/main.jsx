@@ -119,10 +119,10 @@ const router = createBrowserRouter([
     path: "/user/profile/:userId",
     element: <App element={<Profile />} />,
   },
-  {
-    path: "/gallery",
-    element: <App element={<Gallery />} />,
-  },
+  // {
+  //   path: "/gallery",
+  //   element: <App element={<EventGallery />} />,
+  // },
   {
     path: "/events",
     element: <App element={<EventList />} />,

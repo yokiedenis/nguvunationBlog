@@ -41,7 +41,7 @@ export const Navbar = () => {
 
   useEffect(() => {
     // Establish a connection to the server
-    const socket = io(`${import.meta.env.VITE_SERVER_URL}`);
+    const socket = io();
 
     // Join the room based on the user ID (replace `userId` with actual logged-in user ID)
     const userId = user?.user?._id; // Replace with your actual userId logic
@@ -455,9 +455,9 @@ export const Navbar = () => {
               <li>
                 <Link
                   className="text-sm md:text-lg font-medium hover:text-[#e7739a]  px-3 py-1 border-[1px] border-cyan-500 text-cyan-500 transition-all ease-in-out duration-200"
-                  to="/gallery"
+                  to="/events/:eventId"
                 >
-                  Videos
+                  Events
                 </Link>
               </li>
             </ul>

@@ -1,282 +1,128 @@
-const express = require("express");
+const express = require('express');
 const router = express.Router();
-const jwt = require("jsonwebtoken");
-const axios = require("axios");
-const { storage,bucket,bucketName } = require("../gcp/index.js");
-const multer = require("multer");
-const upload = multer({ storage: multer.memoryStorage() });
-const { Gallery } = require("../models/GallerySchema.js");
+const jwt = require('jsonwebtoken');
+const axios = require('axios');
+const { bucket } = require('../gcp/index.js');
 const formidable = require('formidable');
-const path =require("path");
+const path = require('path');
+const Gallery = require('../models/GallerySchema');
 
-
-
+// Middleware to verify JWT token
 function verifyToken(req, res, next) {
-  const token = req.header("Authorization");
-  if (!token)
-    return res.status(401).json({ message: "Authorization token missing" });
+  const token = req.header('Authorization')?.replace('Bearer ', '');
+  if (!token) return res.status(401).json({ message: 'Authorization token missing' });
 
   try {
-    console.log(process.env.JWT_SECRET)
-    const decoded = jwt.verify(token, process.env.JWT_SECRET);
+    const decoded = jwt.verify(token, process.env.JWT_SECRET_KEY);
     req.user = decoded;
     next();
   } catch (err) {
-   
-    return res.status(401).json({ message: "Invalid token" });
+    return res.status(401).json({ message: 'Invalid token' });
   }
 }
 
-
-
-router.get("/:userId", verifyToken, async (req, res) => {
-  const userId = req.params.userId;
-
-  try {
-    const userGallery = await Gallery.findOne({ userId });
-
-    if (!userGallery) {
-      return res.status(404).json({ error: 'User gallery not found' });
+// Upload video endpoint
+router.post('/add/:userId', verifyToken, async (req, res) => {
+  const form = new formidable.IncomingForm();
+  form.parse(req, async (err, fields, files) => {
+    if (err) {
+      return res.status(500).json({ message: 'Error parsing form data' });
     }
 
-    res.status(200).json({ gallery: userGallery });
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ error: 'Failed to fetch user gallery' });
-  }
-});
-
-
-
-
-
-  router.post("/add/:userId",verifyToken, async (req, res) => {
-    const form = new formidable.IncomingForm();
-    const clientIp = req.headers["x-forwarded-for"] || req.connection.remoteAddress;
-
-    console.log("Client IP Address:", clientIp); // Log the IP address
-  
-    form.parse(req, async (err, fields, files) => {
-      if (err) {
-        return res.status(500).json({ error: 'Error occurred during file upload' });
-      }
-  
+    try {
       const userId = req.params.userId;
-      const video = files.video; // The video file uploaded from the frontend
+      const videoFile = files.video?.[0] || files.video;
       
+      // Validate input
+      if (!videoFile) {
+        return res.status(400).json({ message: 'No video file uploaded' });
+      }
+
+      const gallery = await Gallery.findOne({ userId });
+      if (!gallery) {
+        return res.status(404).json({ message: 'Gallery not found' });
+      }
+
+      // Validate storage and bandwidth
+      if (videoFile.size > gallery.freeStorage) {
+        return res.status(400).json({ message: 'Insufficient storage space' });
+      }
+
+      if (videoFile.size > gallery.freeBandwidth) {
+        return res.status(400).json({ message: 'Exceeds daily bandwidth limit' });
+      }
+
+      // Validate file extension
+      const validExtensions = ['.mp4', '.webm', '.ogg', '.mov', '.avi'];
+      const fileExtension = path.extname(videoFile.originalFilename).toLowerCase();
+      if (!validExtensions.includes(fileExtension)) {
+        return res.status(400).json({ 
+          message: `Invalid file type. Supported: ${validExtensions.join(', ')}`
+        });
+      }
+
+      // Upload to GCP
+      const uniqueId = `${Date.now()}-${Math.random().toString(36).substring(2, 8)}`;
+      const fileName = `${uniqueId}-${videoFile.originalFilename}`.replace(/[^\w.-]/g, '');
+      const filePath = `videos/${userId}/${fileName}`;
       
+      const videoUrl = await uploadToGCP(videoFile.filepath, filePath);
+
+      // Create video document
+      const newVideo = {
+        title: fields.title?.[0] || videoFile.originalFilename,
+        description: fields.description?.[0] || '',
+        videoLink: videoUrl,
+        publicId: filePath,
+        size: videoFile.size,
+        duration: 0, // You can extract this later using FFmpeg
+        createdAt: new Date()
+      };
+
+      // Update gallery
+      gallery.videos.push(newVideo);
+      gallery.freeStorage -= newVideo.size;
+      gallery.freeBandwidth -= newVideo.size;
+      await gallery.save();
+
+      // Emit event to other services
       try {
-        if (!video) {
-          return res.status(400).json({ error: 'No video file uploaded' });
-        }
-  
-        const userGallery = await Gallery.findOne({userId:userId});
-
-  
-        if (!userGallery) {
-          return res.status(404).json({ error: 'User gallery not found' });
-        }
-        
-        const fileSizeMB = video[0].size; // File size in bytes
-  
-        if (fileSizeMB > userGallery.freeStorage) {
-          return res.status(400).json({ error: 'Video size exceeds available storage' });
-        }
-        console.log("video size",fileSizeMB)
-        console.log("free bandwidth",userGallery.freeBandwidth)
-        if (fileSizeMB > userGallery.freeBandwidth) {
-          console.log("video size",fileSizeMB)
-          console.log("free bandwidth",userGallery.freeBandwidth)
-          return res.status(400).json({ error: 'Video size exceeds available bandwidth for today' });
-        }
-  
-        const validExtensions = [
-          '.mp4','.mov','.avi','.mkv','.wmv','.flv','.webm','.m4v','.3gp','.3g2','.f4v','.f4p','.f4a','.f4b','.ogg',
-          '.ogv','.ts', '.m2ts','.mts', '.mp3'
-        ];
-        
-        const fileExtension = path.extname(video[0].originalFilename).toLowerCase();
-  
-        if (!validExtensions.includes(fileExtension)) {
-          return res.status(400).json({ error: 'Invalid file extension. Supported extensions are: ' + validExtensions.join(', ') });
-        }
-  
-        const uniqueId = `${Date.now()}-${Math.round(Math.random() * 1E9)}`;
-        const fileName = `${uniqueId}-${video[0].originalFilename}`;
-        const fileUploadPathdirty = `videos/${userId}/${fileName}`; // Unique file path in the GCP bucket
-        const fileUploadPath= fileUploadPathdirty.replace(/[\n\r]/g, '').trim();
-  
-        const uploadedVideoUrl = await uploadToGCP(video[0].filepath, fileUploadPath);
-  
-        const newVideo = {
-          title: video[0].originalFilename,
-          size: fileSizeMB,
-          videoLink: uploadedVideoUrl,
-          publicId: fileUploadPath, // Store the path to use it for future delete/update operations
-        };
-  
-        userGallery.videos.push(newVideo);
-        userGallery.freeStorage -= newVideo.size;
-        userGallery.freeBandwidth -= newVideo.size;
-  
-        await userGallery.save();
-  
-        // Trigger an event for other microservices
-        try {
-          await axios.post(`${process.env.EVENT_SERV}/events`, {
-            type: "videosAdded",
-            clientIp:clientIp,
-            data: {
-              userId,
-              video: newVideo,
-              gallery: userGallery
-            }
-          });
-        } catch (error) {
-          console.error("Failed to send event to Event Service", error);
-        }
-  
-        res.status(200).json({ message: 'Video uploaded successfully', video: newVideo, gallery: userGallery });
-  
-      } catch (error) {
-        console.error('Error uploading video:', error);
-        res.status(500).json({ error: 'Failed to upload video' });
-      }
-    });
-  });
-
-  
-  // Function to upload video to GCP bucket
-  async function uploadToGCP(filePath, destination) {
-    try {
-      const [file] = await bucket.upload(filePath, {
-        destination: destination, // Path in the GCP bucket
-        resumable: true, // If the video upload is interrupted, it will resume
-        metadata: {
-          contentType: 'video/mp4' // Set the MIME type for the video
-        }
-      });
-      // console.log(`Video uploaded to GCP: ${file.metadata.mediaLink}`);
-      return file.metadata.mediaLink; // Return the publicly accessible URL
-    } catch (error) {
-      console.error('Error uploading to GCP:', error);
-      throw error;
-    }
-  }
-  
-
-
-
-  router.delete("/:userId/:videoId",verifyToken,async (req, res) => {
-    const clientIp = req.headers["x-forwarded-for"] || req.connection.remoteAddress;
-    const userId = req.params.userId;
-    const videoId = req.params.videoId;
-  
-    try {
-      // Find the user's gallery
-      const userGallery = await Gallery.findOne({ userId });
-  
-      if (!userGallery) {
-        return res.status(404).json({ error: "User gallery not found" });
-      }
-  
-      // Find the video by ID from the user's gallery
-      const videoToDelete = userGallery.videos.id(videoId);
-      if (!videoToDelete) {
-        return res.status(404).json({ error: "Video not found" });
-      }
-  
-      const videoSize = videoToDelete.size; // Get the video size for later update
-      const publicId = videoToDelete.publicId; // Get the publicId to delete from GCP
-  
-      try {
-        // Delete the video from Google Cloud Storage (GCP)
-        await deleteFromGCP(publicId);
-      } catch (error) {
-        console.error("Failed to delete video from GCP:", error);
-        return res.status(500).json({ error: "Failed to delete video from GCP" });
-      }
-  
-      // Remove the video from the database
-      const videoDocument = videoToDelete.toObject(); 
-      userGallery.videos.pull({ _id: videoDocument._id });
-  
-      // Update user's storage and bandwidth
-      userGallery.freeStorage += videoSize;
-      
-  
-      // Save the updated gallery document
-      await userGallery.save();
-  
-      // Trigger an event for other microservices
-      try {
-        await axios.post(`${process.env.EVENT_SERV}/events`, {
-          type: "videoRemoved",
-          clientIp:clientIp,
+        await axios.post(`${process.env.FRONTEND_CLIENT_URL}/events`, {
+          type: 'videoAdded',
           data: {
             userId,
-            videoId,
-            videoSize,
-            gallery: userGallery
+            video: newVideo,
+            gallery: {
+              freeStorage: gallery.freeStorage,
+              freeBandwidth: gallery.freeBandwidth
+            }
           }
         });
-      } catch (error) {
-        console.error("Failed to send event to Event Service", error);
+      } catch (eventError) {
+        console.error('Event service error:', eventError.message);
       }
-  
-      res.status(200).json({ message: "Video deleted successfully", gallery: userGallery });
-  
+
+      return res.status(201).json({
+        message: 'Video uploaded successfully',
+        video: newVideo
+      });
+
     } catch (error) {
-      console.error("Error deleting video:", error);
-      res.status(500).json({ error: "Failed to delete video" });
+      console.error('Upload error:', error);
+      return res.status(500).json({ message: error.message });
     }
   });
-  
-  
-  // Function to delete video from GCP bucket
-  async function deleteFromGCP(filePath) {
-    try {
-      await bucket.file(filePath).delete();
-      // console.log(`Video deleted from GCP: ${filePath}`);
-    } catch (error) {
-      console.error("Error deleting from GCP:", error);
-      throw error;
+});
+
+// Helper function for GCP upload
+async function uploadToGCP(filePath, destination) {
+  const [file] = await bucket.upload(filePath, {
+    destination,
+    metadata: {
+      contentType: 'video/*'
     }
-  }
- 
-  module.exports = router;
-  
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+  });
+  return `https://storage.googleapis.com/${bucket.name}/${file.name}`;
+}
 
 module.exports = router;

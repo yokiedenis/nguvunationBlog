@@ -18,8 +18,8 @@ const UserGallery = ({ userId, token }) => {
     const fetchGallery = async () => {
       try {
         const endpoint = isCurrentUser 
-          ? `${import.meta.env.VITE_GALLERY_SERVICE_URL}/videos/me`
-          : `${import.meta.env.VITE_GALLERY_SERVICE_URL}/videos/user/${userId}`;
+          ? `${import.meta.env.VITE_SERVER_URL}/videos/me`
+          : `${import.meta.env.VITE_SERVER_URL}/videos/user/${userId}`;
         
         const headers = isCurrentUser 
           ? { Authorization: `Bearer ${token}` }
