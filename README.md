@@ -75,7 +75,7 @@ GCP cloud storage
 
 
 
-FRONTEND
+ # FRONTEND
             Firebase Configuration (Client-side)
             VITE_FIREBASE_API_KEY="your_firebase_api_key_here"
             VITE_FIREBASE_AUTH_DOMAIN="your-project-id.firebaseapp.com"
