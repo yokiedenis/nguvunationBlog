@@ -2,7 +2,7 @@ base template code comes from https://github.com/pawantech12 or https://www.link
         
 events videos microservices template code comes from https://github.com/NemroNeno/CloudProject.git
 
-for copyrights issues please reachout to me for takedown 
+for human copyrights issues please reachout to me for takedown 
 this codebase is free to use
              
  # how to set up environment
