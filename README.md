@@ -2,7 +2,14 @@ base template code comes from https://github.com/pawantech12 or https://www.link
         
 events videos microservices template code comes from https://github.com/NemroNeno/CloudProject.git
              
-             the essence is to contribute to his repo as he allows contributions. since am building this for an NGO, i am grateful to his clean code
+ # how to set up environment
+            .git clone repo in desired folder
+            2.navigate to client and server [cd client and cd server]
+            3.npm instal for both.
+            4.add .env file variables
+            5.npm run dev to serve locally [port 5000, port (http://localhost:5173)]
+            6.host on vercel for session render for cookies, NB render has no session. 
+            7.rapid fire using the auto deployment of vercel in the production site for agile dev with ai give full code prompt
 
 
 currently transforming microservices to Monolithic architecture 
