@@ -12,7 +12,7 @@ this codebase is free to use
             4.add .env file variables
             5.npm run dev to serve locally [port 5000, port (http://localhost:5173)]
             6.host on vercel for session render for cookies, NB render has no session. 
-            7.rapid fire using the auto deployment of vercel in the production site for agile dev with ai give full code prompt (good for typescript bug detection) then copy failure logs and paste in deepseek with associated code, building without learning
+            7.rapid fire using the auto deployment of vercel in the production site for agile dev with ai give full code prompt good for typescript bug detection, as typescript has one port, two separate links for student or teacher or admin
 
 
 currently transforming microservices to Monolithic architecture 
@@ -100,3 +100,5 @@ GCP cloud storage
 
 
 WEB APP UNDER DEVELOPMENT BY yokas[fullstack], milqan[logo redesign], custer'ed[frontend], rukundo rolex[ui/ux.graphics]
+
+https://nguvunationblog.onrender.com FRONTEND ERROR
