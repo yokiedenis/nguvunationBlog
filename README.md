@@ -1,18 +1,8 @@
 base template code comes from https://github.com/pawantech12 or https://www.linkedin.com/in/pawan-kumavat-11b105297/
         
 events videos microservices template code comes from https://github.com/NemroNeno/CloudProject.git
-
-for humans giving back copy right issues please reachout to me for takedown 
-this codebase is free to use
              
- # how to set up environment
-            .git clone repo in desired folder
-            2.navigate to client and server [cd client and cd server]
-            3.npm instal for both.
-            4.add .env file variables
-            5.npm run dev to serve locally [port 5000, port (http://localhost:5173)]
-            6.host on vercel for session render for cookies, NB render has no session. 
-            7.rapid fire using the auto deployment of vercel in the production site for agile dev with ai give full code prompt good for typescript bug detection, as typescript has one port, two separate links for student or teacher or admin
+             the essence is to contribute to his repo as he allows contributions. since am building this for an NGO, i am grateful to his clean code
 
 
 currently transforming microservices to Monolithic architecture 
