@@ -435,8 +435,8 @@ export const Navbar = () => {
                 >
                   Home
                 </Link>
-                <span>switching to vercel for backend</span>
-                <a href="https://github.com/yokiedenis/nguvunationBlog.git">repo</a>
+                {/* <span>switching to vercel for backend</span> */}
+                {/* <a href="https://github.com/yokiedenis/nguvunationBlog.git">repo</a> */}
               </li>
               <li>
                 <Link
