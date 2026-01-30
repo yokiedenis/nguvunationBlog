@@ -27,9 +27,11 @@ export const AuthProvider = ({ children }) => {
           headers: {
             Authorization: `Bearer ${token}`,
           },
-        }
+        },
       );
-      setUser(response.data);
+      // Extract user from response (API returns { success: true, user: {...} })
+      const userObj = response.data.user || response.data;
+      setUser(userObj);
     } catch (error) {
       console.error("Failed to fetch user data:", error);
       if (error.response && error.response.status === 401) {

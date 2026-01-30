@@ -62,8 +62,8 @@ export const Navbar = () => {
       // Remove the specific notification from the state when the user unfollows someone
       setNotifications((prevNotifications) =>
         prevNotifications.filter(
-          (notification) => notification._id !== notificationId
-        )
+          (notification) => notification._id !== notificationId,
+        ),
       );
 
       // Update the unread count
@@ -79,7 +79,7 @@ export const Navbar = () => {
     const fetchAllBlogs = async () => {
       try {
         const response = await axios.get(
-          `${import.meta.env.VITE_SERVER_URL}/blog/all-blogs`
+          `${import.meta.env.VITE_SERVER_URL}/blog/all-blogs`,
         );
         console.log("search filtered blogs: ", response);
         if (response.data.success) {
@@ -99,7 +99,7 @@ export const Navbar = () => {
             headers: {
               Authorization: `Bearer ${token}`,
             },
-          }
+          },
         );
         setNotifications(response.data);
 
@@ -117,7 +117,7 @@ export const Navbar = () => {
   useEffect(() => {
     // Filter blogs based on the search term
     const results = blogs.filter((blog) =>
-      blog.title.toLowerCase().includes(searchTerm.toLowerCase())
+      blog.title.toLowerCase().includes(searchTerm.toLowerCase()),
     );
     setFilteredBlogs(results);
   }, [searchTerm, blogs]);
@@ -147,7 +147,7 @@ export const Navbar = () => {
           headers: {
             Authorization: `Bearer ${token}`,
           },
-        }
+        },
       );
 
       // Update the notifications in the frontend state to mark them as read
@@ -155,7 +155,7 @@ export const Navbar = () => {
         prevNotifications.map((notification) => ({
           ...notification,
           isRead: true, // Update the isRead field
-        }))
+        })),
       );
 
       // Optionally update unread count
@@ -180,16 +180,15 @@ export const Navbar = () => {
         <div className="py-4 md:py-5 px-2 md:px-8 flex items-center bg-black justify-between border-b border-gray-200">
           <div>
             <figure>
-            <img src={Logo} alt="Logo" className="w-[10rem] md:w-[12rem] " /> 
+              <img src={Logo} alt="Logo" className="w-[10rem] md:w-[12rem] " />
             </figure>
           </div>
           <h2 className="hidden lg:block text-3xl font-semibold text-center text-custom-light-black">
-  <span className="text-[#34b9be]"> N</span>
-  <span className="text-[#e7739a]">guvu</span>
-  {' '}
-  <span className="text-[#e7739a]">N</span>
-  <span className="text-[#34b9be]">ation</span>
-</h2>
+            <span className="text-[#34b9be]"> N</span>
+            <span className="text-[#e7739a]">guvu</span>{" "}
+            <span className="text-[#e7739a]">N</span>
+            <span className="text-[#34b9be]">ation</span>
+          </h2>
           <div className="flex items-center gap-3 md:gap-5">
             <button
               onClick={handleSearchClick}
@@ -257,7 +256,7 @@ export const Navbar = () => {
                                         {notification?.post?.title?.length > 20
                                           ? notification?.post?.title?.slice(
                                               0,
-                                              20
+                                              20,
                                             ) + "..."
                                           : notification?.post?.title}
                                       </span>
@@ -272,7 +271,7 @@ export const Navbar = () => {
                                         {notification?.post?.title?.length > 20
                                           ? notification?.post?.title.slice(
                                               0,
-                                              20
+                                              20,
                                             ) + "..."
                                           : notification?.post?.title}
                                       </span>
@@ -294,7 +293,7 @@ export const Navbar = () => {
                                         {notification?.post?.title?.length > 20
                                           ? notification?.post?.title?.slice(
                                               0,
-                                              20
+                                              20,
                                             ) + "..."
                                           : notification?.post?.title}
                                       </span>
@@ -305,7 +304,7 @@ export const Navbar = () => {
                                       new Date(notification?.createdAt),
                                       {
                                         addSuffix: true,
-                                      }
+                                      },
                                     )}
                                   </span>
                                 </div>
@@ -398,13 +397,13 @@ export const Navbar = () => {
               </>
             ) : (
               <button className=" border-[1px] border-cyan-500 p-[0.3rem] hover:border-[#e7739a]  transition-all ease-in-out duration-200 text-2xl rounded-md">
-               <Link to="/register">
-               <img 
-      src={avaicon}  // Update this path
-      alt="User icon"
-      className="w-8 h-8"  // Adjust size as needed
-    />
-</Link>
+                <Link to="/register">
+                  <img
+                    src={avaicon} // Update this path
+                    alt="User icon"
+                    className="w-8 h-8" // Adjust size as needed
+                  />
+                </Link>
               </button>
             )}
           </div>
@@ -457,7 +456,7 @@ export const Navbar = () => {
               <li>
                 <Link
                   className="text-sm md:text-lg font-medium hover:text-[#e7739a]  px-3 py-1 border-[1px] border-cyan-500 text-cyan-500 transition-all ease-in-out duration-200"
-                  to="/events/:eventId"
+                  to="/events"
                 >
                   Events
                 </Link>

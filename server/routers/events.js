@@ -1,41 +1,62 @@
 // routes/events.js
-const express = require('express');
+const express = require("express");
 const router = express.Router();
-const Event = require('../models/EventSchema');
-const { authenticateToken } = require('../middlewares/authenticateToken.middleware');
+const axios = require("axios");
+const Event = require("../models/EventSchema");
+const {
+  authenticateToken,
+} = require("../middlewares/authenticateToken.middleware");
 
 // Create a new event
-router.post('/', authenticateToken, async (req, res) => {
+router.post("/", authenticateToken, async (req, res) => {
   try {
     const { title, description, startDate, endDate, location } = req.body;
-    
+
     const newEvent = new Event({
       title,
       description,
       startDate,
       endDate,
       location,
-      organizer: req.user.userId
+      organizer: req.user.userId,
     });
-    
+
     await newEvent.save();
-    
+
+    // Emit event to videos handler for gallery creation
+    try {
+      await axios.post(
+        `http://localhost:${process.env.PORT || 5000}/videos/events`,
+        {
+          type: "EventCreated",
+          data: {
+            eventId: newEvent._id,
+            title: newEvent.title,
+            organizer: newEvent.organizer,
+          },
+        },
+      );
+    } catch (videoEventError) {
+      console.error("Video event error:", videoEventError.message);
+    }
+
     res.status(201).json({
-      message: 'Event created successfully',
-      event: newEvent
+      message: "Event created successfully",
+      event: newEvent,
     });
   } catch (error) {
+    console.error("Error creating event:", error);
     res.status(500).json({ message: error.message });
   }
 });
 
 // Get all events
-router.get('/', async (req, res) => {
+router.get("/", async (req, res) => {
   try {
     const events = await Event.find()
-      .populate('organizer', 'name profileImg')
+      .populate("organizer", "name profileImg")
       .sort({ startDate: -1 });
-      
+
     res.json(events);
   } catch (error) {
     res.status(500).json({ message: error.message });
@@ -43,40 +64,56 @@ router.get('/', async (req, res) => {
 });
 
 // Get event details
-router.get('/:eventId', async (req, res) => {
+router.get("/:eventId", async (req, res) => {
   try {
-    const event = await Event.findById(req.params.eventId)
-      .populate('organizer', 'name profileImg')
-      .populate('participants', 'name profileImg');
-      
-    if (!event) {
-      return res.status(404).json({ message: 'Event not found' });
+    const { eventId } = req.params;
+
+    if (!eventId || eventId === ":eventId") {
+      return res.status(400).json({
+        message: "Invalid event ID provided",
+        received: eventId,
+      });
     }
-    
+
+    const event = await Event.findById(eventId)
+      .populate("organizer", "name profileImg")
+      .populate("participants", "name profileImg");
+
+    if (!event) {
+      return res.status(404).json({
+        message: "Event not found",
+        eventId: eventId,
+      });
+    }
+
     res.json(event);
   } catch (error) {
-    res.status(500).json({ message: error.message });
+    console.error("Error fetching event:", error);
+    res.status(500).json({
+      message: error.message,
+      error: process.env.NODE_ENV === "development" ? error : undefined,
+    });
   }
 });
 
 // Join an event
-router.post('/:eventId/join', authenticateToken, async (req, res) => {
+router.post("/:eventId/join", authenticateToken, async (req, res) => {
   try {
     const event = await Event.findById(req.params.eventId);
-    
+
     if (!event) {
-      return res.status(404).json({ message: 'Event not found' });
+      return res.status(404).json({ message: "Event not found" });
     }
-    
+
     // Add user to participants if not already
     if (!event.participants.includes(req.user.userId)) {
       event.participants.push(req.user.userId);
       await event.save();
     }
-    
+
     res.json({
-      message: 'You have joined the event',
-      event
+      message: "You have joined the event",
+      event,
     });
   } catch (error) {
     res.status(500).json({ message: error.message });

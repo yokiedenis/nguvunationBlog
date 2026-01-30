@@ -14,6 +14,7 @@ const { Query } = require("./models/QuerySchema");
 const { Usage } = require("./models/UsageSchema");
 const { Storage } = require("./models/StorageSchema");
 const { Gallery } = require("./models/GallerySchema");
+const Event = require("./models/EventSchema");
 const Notification = require("./models/notification.model");
 const axios = require("axios");
 
@@ -352,6 +353,7 @@ app.post("/videos/events", async (req, res) => {
           freeStorage: 50 * 1024 * 1024,
           freeBandwidth: 100 * 1024 * 1024,
           videos: [],
+          eventGalleries: [],
         });
         await newGallery.save();
         console.log(`Gallery created for user ${userId}`);
@@ -360,6 +362,25 @@ app.post("/videos/events", async (req, res) => {
       }
     } catch (error) {
       console.error("Error creating gallery:", error);
+      return res.status(500).json({ error: "Internal Server Error" });
+    }
+  }
+
+  if (type === "EventCreated") {
+    try {
+      const { eventId, title, organizer } = data;
+      const event = await Event.findById(eventId);
+      if (event) {
+        event.eventGalleryStats = {
+          totalVideos: 0,
+          totalViews: 0,
+          totalEngagement: 0,
+        };
+        await event.save();
+        console.log(`Event gallery stats initialized for event ${eventId}`);
+      }
+    } catch (error) {
+      console.error("Error initializing event gallery stats:", error);
       return res.status(500).json({ error: "Internal Server Error" });
     }
   }
@@ -400,6 +421,74 @@ app.post("/videos/events", async (req, res) => {
     } catch (error) {
       console.error("Error updating free bandwidth:", error.message);
       return res.status(500).json({ error: "Internal Server Error" });
+    }
+  }
+
+  // Event Video Handlers
+  if (type === "eventVideoAdded") {
+    try {
+      const { userId, eventId, video } = data;
+      const storage = await Storage.findOne({ userId });
+
+      if (storage) {
+        storage.UsedStorage += video.size || 0;
+        storage.FreeStorage -= video.size || 0;
+        await storage.save();
+        console.log("Storage updated for eventVideoAdded:", userId);
+      }
+
+      // Update usage
+      const usage = await Usage.findOne({ userId });
+      if (usage) {
+        usage.bandwidthTotalUsage += video.size || 0;
+        usage.bandwidthDailyUsage += video.size || 0;
+        await usage.save();
+        console.log("Usage updated for eventVideoAdded:", userId);
+      }
+
+      // Update event stats
+      const event = await Event.findById(eventId);
+      if (event) {
+        event.eventGalleryStats.totalVideos =
+          (event.eventGalleryStats.totalVideos || 0) + 1;
+        await event.save();
+      }
+    } catch (error) {
+      console.error("Error handling eventVideoAdded:", error.message);
+    }
+  }
+
+  if (type === "eventVideoRemoved") {
+    try {
+      const { userId, eventId, videoSize } = data;
+      const storage = await Storage.findOne({ userId });
+
+      if (storage) {
+        storage.UsedStorage -= videoSize || 0;
+        storage.FreeStorage += videoSize || 0;
+        await storage.save();
+        console.log("Storage updated for eventVideoRemoved:", userId);
+      }
+
+      // Update usage
+      const usage = await Usage.findOne({ userId });
+      if (usage) {
+        usage.bandwidthTotalUsage -= videoSize || 0;
+        if (usage.bandwidthDailyUsage > 0) {
+          usage.bandwidthDailyUsage -= videoSize || 0;
+        }
+        await usage.save();
+        console.log("Usage updated for eventVideoRemoved:", userId);
+      }
+
+      // Update event stats
+      const event = await Event.findById(eventId);
+      if (event && event.eventGalleryStats.totalVideos > 0) {
+        event.eventGalleryStats.totalVideos -= 1;
+        await event.save();
+      }
+    } catch (error) {
+      console.error("Error handling eventVideoRemoved:", error.message);
     }
   }
 
