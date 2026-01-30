@@ -2,6 +2,8 @@ import React, { useState, useEffect, useCallback } from "react";
 import { useParams } from "react-router-dom";
 import VideoPlayer from "../components/videoPlayer";
 import UploadForm from "../components/uploadForm";
+import EventOrganizerDashboard from "../components/EventOrganizerDashboard";
+import EventParticipantManager from "../components/EventParticipantManager";
 import { useAuth } from "../store/Authentication";
 
 const EventGallery = () => {
@@ -10,6 +12,8 @@ const EventGallery = () => {
   const [event, setEvent] = useState(null);
   const [videos, setVideos] = useState([]);
   const [showUploadForm, setShowUploadForm] = useState(false);
+  const [showOrganizerDashboard, setShowOrganizerDashboard] = useState(false);
+  const [showParticipantManager, setShowParticipantManager] = useState(false);
   const [loading, setLoading] = useState(true);
 
   const fetchEventData = useCallback(async () => {
@@ -130,12 +134,30 @@ const EventGallery = () => {
           </div>
 
           {user && (
-            <button
-              onClick={() => setShowUploadForm(true)}
-              className="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded"
-            >
-              Share Your Video
-            </button>
+            <div className="flex gap-2 flex-wrap">
+              <button
+                onClick={() => setShowUploadForm(true)}
+                className="bg-blue-500 hover:bg-blue-600 text-white py-2 px-3 sm:px-4 rounded text-sm sm:text-base"
+              >
+                Share Video
+              </button>
+              {event && user?._id === event.organizer && (
+                <>
+                  <button
+                    onClick={() => setShowOrganizerDashboard(true)}
+                    className="bg-purple-500 hover:bg-purple-600 text-white py-2 px-3 sm:px-4 rounded text-sm sm:text-base"
+                  >
+                    Dashboard
+                  </button>
+                  <button
+                    onClick={() => setShowParticipantManager(true)}
+                    className="bg-green-500 hover:bg-green-600 text-white py-2 px-3 sm:px-4 rounded text-sm sm:text-base"
+                  >
+                    Participants
+                  </button>
+                </>
+              )}
+            </div>
           )}
         </div>
       </div>
@@ -146,6 +168,26 @@ const EventGallery = () => {
           onClose={() => setShowUploadForm(false)}
           onSuccess={handleUploadSuccess}
           token={token}
+        />
+      )}
+
+      {showOrganizerDashboard && (
+        <EventOrganizerDashboard
+          eventId={eventId}
+          onClose={() => {
+            setShowOrganizerDashboard(false);
+            fetchEventData();
+          }}
+        />
+      )}
+
+      {showParticipantManager && (
+        <EventParticipantManager
+          eventId={eventId}
+          onClose={() => {
+            setShowParticipantManager(false);
+            fetchEventData();
+          }}
         />
       )}
 

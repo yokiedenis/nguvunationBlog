@@ -237,11 +237,21 @@ app.post("/storage/events", async (req, res) => {
   if (type === "videosAdded") {
     try {
       const { userId, video } = data;
-      const storage = await Storage.findOne({ userId });
+      let storage = await Storage.findOne({ userId });
 
       if (!storage) {
-        console.error("Storage not found for User:", userId);
-        return res.status(404).json({ error: "Storage not found" });
+        console.log(
+          "Storage not found for User:",
+          userId,
+          "- Creating new storage record",
+        );
+        storage = new Storage({
+          userId,
+          totalStorage: 50 * 1024 * 1024,
+          UsedStorage: 0,
+          FreeStorage: 50 * 1024 * 1024,
+        });
+        await storage.save();
       }
 
       const totalAddedSize = video.size || 0;
@@ -302,11 +312,21 @@ app.post("/usagemonitoring/events", async (req, res) => {
   if (type === "videosAdded") {
     try {
       const { userId, video } = data;
-      const usage = await Usage.findOne({ userId });
+      let usage = await Usage.findOne({ userId });
 
       if (!usage) {
-        console.error("Usage not found for User:", userId);
-        return res.status(404).json({ error: "Usage not found" });
+        console.log(
+          "Usage not found for User:",
+          userId,
+          "- Creating new usage record",
+        );
+        usage = new Usage({
+          userId,
+          bandwidthTotalUsage: 0,
+          bandwidthDailyUsage: 0,
+          dailyLimit: 100 * 1024 * 1024,
+        });
+        await usage.save();
       }
 
       const totalAddedSize = video.size || 0;

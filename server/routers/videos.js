@@ -136,6 +136,10 @@ router.get("/me", verifyToken, async (req, res) => {
 // Upload video to user gallery (Protected)
 router.post("/add/:userId", verifyToken, async (req, res) => {
   const form = new formidable.IncomingForm();
+  form.maxFileSize = 1 * 1024 * 1024 * 1024; // 1GB
+  form.maxFields = 100;
+  form.maxFieldsSize = 50 * 1024 * 1024; // 50MB for all fields combined
+
   form.parse(req, async (err, fields, files) => {
     if (err) {
       return res.status(500).json({ message: "Error parsing form data" });
@@ -146,7 +150,15 @@ router.post("/add/:userId", verifyToken, async (req, res) => {
       const videoFile = files.video?.[0] || files.video;
 
       // Validate input
-      const validExtensions = [".mp4", ".webm", ".ogg", ".mov", ".avi"];
+      const validExtensions = [
+        ".mp4",
+        ".webm",
+        ".ogg",
+        ".mov",
+        ".avi",
+        ".mkv",
+        ".flv",
+      ];
       const validation = validateVideoFile(videoFile, validExtensions);
       if (!validation.valid) {
         return res.status(400).json({ message: validation.error });
@@ -157,18 +169,30 @@ router.post("/add/:userId", verifyToken, async (req, res) => {
         return res.status(404).json({ message: "Gallery not found" });
       }
 
-      // Validate storage and bandwidth
+      // Validate storage (1GB limit per file, not 50MB)
+      if (videoFile.size > 1 * 1024 * 1024 * 1024) {
+        return res.status(400).json({ message: "File exceeds 1GB limit" });
+      }
+
+      // Check if user has storage space
       if (videoFile.size > gallery.freeStorage) {
-        return res.status(400).json({ message: "Insufficient storage space" });
+        return res.status(400).json({
+          message: "Insufficient storage space",
+          required: videoFile.size,
+          available: gallery.freeStorage,
+        });
       }
 
+      // Check bandwidth
       if (videoFile.size > gallery.freeBandwidth) {
-        return res
-          .status(400)
-          .json({ message: "Exceeds daily bandwidth limit" });
+        return res.status(400).json({
+          message: "Exceeds daily bandwidth limit",
+          required: videoFile.size,
+          available: gallery.freeBandwidth,
+        });
       }
 
-      // Upload to GCP
+      // Upload to GCP with optimized settings
       const uniqueId = `${Date.now()}-${Math.random()
         .toString(36)
         .substring(2, 8)}`;
@@ -528,6 +552,10 @@ router.get("/event/:eventId/videos", async (req, res) => {
 // Upload video to event gallery (Protected)
 router.post("/add/event/:eventId", verifyToken, async (req, res) => {
   const form = new formidable.IncomingForm();
+  form.maxFileSize = 1 * 1024 * 1024 * 1024; // 1GB
+  form.maxFields = 100;
+  form.maxFieldsSize = 50 * 1024 * 1024; // 50MB for all fields combined
+
   form.parse(req, async (err, fields, files) => {
     if (err) {
       return res.status(500).json({ message: "Error parsing form data" });
@@ -544,37 +572,30 @@ router.post("/add/event/:eventId", verifyToken, async (req, res) => {
         return res.status(404).json({ message: "Event not found" });
       }
 
-      // Check if video uploads are allowed
-      if (!event.allowVideoUpload) {
+      // Check if video uploads are allowed (default to true if not set)
+      const allowVideoUpload = event.allowVideoUpload !== false;
+      if (!allowVideoUpload) {
         return res
           .status(403)
           .json({ message: "Video uploads are disabled for this event" });
       }
 
-      // Check upload permissions
-      const isOrganizer = event.organizer.toString() === userId;
-      const isParticipant = event.participants.some(
-        (p) => p.toString() === userId,
-      );
-
-      if (event.videoUploadRestriction === "organizer" && !isOrganizer) {
-        return res.status(403).json({
-          message: "Only event organizer can upload videos",
-        });
-      }
-
-      if (
-        event.videoUploadRestriction === "participants" &&
-        !isOrganizer &&
-        !isParticipant
-      ) {
-        return res.status(403).json({
-          message: "Only event participants can upload videos",
-        });
+      // Auto-join user as participant if not already
+      if (!event.participants.includes(userId)) {
+        event.participants.push(userId);
+        await event.save();
       }
 
       // Validate video file
-      const validExtensions = [".mp4", ".webm", ".ogg", ".mov", ".avi"];
+      const validExtensions = [
+        ".mp4",
+        ".webm",
+        ".ogg",
+        ".mov",
+        ".avi",
+        ".mkv",
+        ".flv",
+      ];
       const validation = validateVideoFile(videoFile, validExtensions);
       if (!validation.valid) {
         return res.status(400).json({ message: validation.error });
@@ -592,15 +613,26 @@ router.post("/add/event/:eventId", verifyToken, async (req, res) => {
         });
       }
 
+      // Check file size (1GB limit)
+      if (videoFile.size > 1 * 1024 * 1024 * 1024) {
+        return res.status(400).json({ message: "File exceeds 1GB limit" });
+      }
+
       // Check storage and bandwidth
       if (videoFile.size > gallery.freeStorage) {
-        return res.status(400).json({ message: "Insufficient storage space" });
+        return res.status(400).json({
+          message: "Insufficient storage space",
+          required: videoFile.size,
+          available: gallery.freeStorage,
+        });
       }
 
       if (videoFile.size > gallery.freeBandwidth) {
-        return res
-          .status(400)
-          .json({ message: "Exceeds daily bandwidth limit" });
+        return res.status(400).json({
+          message: "Exceeds daily bandwidth limit",
+          required: videoFile.size,
+          available: gallery.freeBandwidth,
+        });
       }
 
       // Upload to GCP
